@@ -4,6 +4,8 @@ import Business.Employee.Employee;
 import Business.Role.LabManagerRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
+import com.github.javafaker.Faker;
+
 
 /**
  *
@@ -14,12 +16,14 @@ public class ConfigureASystem {
     public static EcoSystem configure(){
         
         EcoSystem system = EcoSystem.getInstance();
+        Faker faker = new Faker();
         
         //Create a network
         //create an enterprise
         //initialize some organizations
         //have some employees 
         //create user account
+        
         
         
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
