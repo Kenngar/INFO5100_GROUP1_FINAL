@@ -20,9 +20,15 @@ public class AdminOrganization extends Organization{
     
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new AdminRole());
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new WholesalerEnterpriseAdminRole());
+        roles.add(new RetailerEnterpriseAdminRole());
+        roles.add(new ManufacturerEnterpriseAdminRole());
         return roles;
     }
-     
+
+    public Organization.Type getType() {
+        return Organization.Type.Admin;
+    }
+
 }
