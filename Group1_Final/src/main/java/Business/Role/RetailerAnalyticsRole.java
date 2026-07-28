@@ -9,17 +9,18 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.LabManagerRole.LabManagerWorkAreaJPanel;
+import ui.RetailerAnalyticsWorkArea.RetailerAnalyticsMenuJPanel;
+
 
 /**
  *
- * @author raunak
+ * @author Kenneth Garcia
  */
-public class LabManagerRole extends Role {
+public class RetailerAnalyticsRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new RetailerAnalyticsMenuJPanel(userProcessContainer, account, organization, business, enterprise);
     }
     
 }
