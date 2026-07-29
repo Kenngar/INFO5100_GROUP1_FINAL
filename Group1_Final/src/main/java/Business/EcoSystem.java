@@ -40,6 +40,11 @@ public class EcoSystem extends Organization {
         networkList.add(network);
         return network;
     }
+    
+    public void deleteNetwork(Network network) {
+        networkList.remove(network);
+    }
+
 
     @Override
     public ArrayList<Role> getSupportedRole() {
