@@ -1,6 +1,5 @@
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\RetailerAnalyticsRole.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\OrderModel\WholesalerProductCatalog.java
-C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\DoctorRole\DoctorWorkAreaJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\RetailerAnalyticsOrganization.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\EnterpriseAdmin\ViewUpdateOrganizationJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\AdminOrganization.java
@@ -28,11 +27,11 @@ C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\ja
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Enterprise\ManufacturerEnterprise.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\OrderModel\Product.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\SystemAdminRole.java
-C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\LabAssistantRole\LabAssistantWorkAreaJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\RetailerStoreOrganization.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\AdministrativeRole\AdminWorkAreaJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\ManufacturerOperationsOrganization.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\StoreAssociateRole.java
+C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\WholesalerPricing\WholesalerPricingMenuJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\OrderModel\OrderItem.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\RetailerEnterpriseAdminRole.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\WorkQueue\WorkRequest.java
@@ -52,10 +51,7 @@ C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\ja
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\WorkQueue\LabTestWorkRequest.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\WholesalerEnterpriseAdminRole.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\OrganizationDirectory.java
-C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\LabAssistantRole\ProcessWorkRequestJPanel.java
-C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\DoctorRole\RequestLabTestJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\AdministrativeRole\ManageEmployeeJPanel.java
-C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\LabManagerRole\LabManagerWorkAreaJPanel.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Organization\Organization.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\ui\MainJFrame.java
 C:\Users\kens2\OneDrive\Documents\INFO5100_GROUP1_FINAL\Group1_Final\src\main\java\Business\Role\WholesalerMarketingRole.java

@@ -22,8 +22,8 @@ public abstract class Enterprise extends Organization{
     }
     
     public enum EnterpriseType{
-        SUPPLIER("Supplier"),
-        RETAIL("Retail"),
+        WHOLESALER("Wholesaler"),
+        RETAILER("Retailer"),
         MANUFACTURER("Manufacturer");
         
         
