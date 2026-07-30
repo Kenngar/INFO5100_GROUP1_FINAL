@@ -27,20 +27,16 @@ public abstract class Role {
         WholesalerSales("Wholesaler Sales"),
         WholesalerMarketing("Wholesaler Marketing"),
         
-        RetailBusinessAnalyst("Retail Business Analyst"),
+        RetailBusinessAnalyst("Retail Analyst"),
         RetailManager("Retail Manager"),
         RetailAssociate("Retail Associate"),
         
-        ShippingPricingAnalyst("Shipping Pricing Analyst"),
-        ShippingCoordinator("Shipping Coordinator"),
+        ManufacturingOperationsManager("Operations Manager"),
+        ProductionAnalyst("Production Analyst"),
         
-        ManufacturingPricingAnalyst("Manufacturing Pricing Analyst"),
-        ManufacturingDataAnalyst("Manufacturing Data Analyst"),
-        ProductionPlanner("Production Planner"),
-        
-        LabAssistant("Lab Assistant");
         
         private String value;
+        
         private RoleType(String value){
             this.value = value;
         }
@@ -55,7 +51,7 @@ public abstract class Role {
         }
     }
     
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
+   public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
