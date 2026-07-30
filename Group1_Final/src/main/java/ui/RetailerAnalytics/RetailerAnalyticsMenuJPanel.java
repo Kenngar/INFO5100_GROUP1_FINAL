@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.WholesalerPricing;
+package ui.RetailerAnalytics;
+import ui.RetailerAssociate.*;
 import ui.WholesalerSales.SellWholesalerProductsJPanel;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author Kenneth Garcia
  */
-public class WholesalerPricingMenuJPanel extends javax.swing.JPanel {
+public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
@@ -23,11 +25,11 @@ public class WholesalerPricingMenuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form WholesalerMenuJPanel
      */
-      public WholesalerPricingMenuJPanel() {
+      public RetailerAnalyticsMenuJPanel() {
         this(null, null, null, null);
     }
 
-    public WholesalerPricingMenuJPanel(JPanel userProcessContainer,
+    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer,
                                             UserAccount account,
                                             Organization organization,
                                             EcoSystem business) {
@@ -36,6 +38,10 @@ public class WholesalerPricingMenuJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.organization = organization;
         this.business = business;
+    }
+
+    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 
@@ -133,61 +139,17 @@ public class WholesalerPricingMenuJPanel extends javax.swing.JPanel {
 
     private void btnViewInventoryIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
- if (userProcessContainer == null) {
-            return;
-        }
-
-        WholesalerPricingInventoryJPanel wholesalerPricingInventoryJPanel =
-            new WholesalerPricingInventoryJPanel(
-                userProcessContainer,
-                userAccount,
-                organization,
-                business
-            );
-
-        userProcessContainer.add("WholesalerPricingInventoryJPanel", wholesalerPricingInventoryJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
 
     }//GEN-LAST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
 
     private void btnMessageSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageSalesActionPerformed
         // TODO add your handling code here:
-        if (userProcessContainer == null) {
-            return;
-        }
-
-        WholesalerPricingToSalesJPanel wholesalerPricingSalesJPanel =
-            new WholesalerPricingToSalesJPanel(
-                userProcessContainer,
-                userAccount,
-                organization,
-                business
-            );
-
-        userProcessContainer.add("WholesalerPricingSalesJPanel",wholesalerPricingSalesJPanel );
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
       
     }//GEN-LAST:event_btnMessageSalesActionPerformed
 
     private void btnMessageManufacturerIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
-     if (userProcessContainer == null) {
-            return;
-        }
-
-        WholesalerPricingToManufacturer wholesalerPricingToManufacturer =
-            new WholesalerPricingToManufacturer(
-                userProcessContainer,
-                userAccount,
-                organization,
-                business
-            );
-
-        userProcessContainer.add("WholesalerPricingToManufacturer",wholesalerPricingToManufacturer );
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer); 
+ 
     }//GEN-LAST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
 
 

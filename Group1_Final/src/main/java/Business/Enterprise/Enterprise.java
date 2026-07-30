@@ -20,13 +20,8 @@ public abstract class Enterprise extends Organization {
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
-<<<<<<< HEAD
-
-    public enum EnterpriseType {
-=======
     
     public enum EnterpriseType{
->>>>>>> Wholesaler-Kenneth-Garcia
         WHOLESALER("Wholesaler"),
         RETAILER("Retailer"),
         MANUFACTURER("Manufacturer");
