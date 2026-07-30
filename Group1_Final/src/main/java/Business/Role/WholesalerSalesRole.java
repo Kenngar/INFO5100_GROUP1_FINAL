@@ -9,7 +9,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import ui.WholesalerSales.WholesalerSalesMenuJPanel;
-import ui.WholesalerSalesWorkArea.WholesalerSalesMenuJPanel;
+
 
 /**
  *
