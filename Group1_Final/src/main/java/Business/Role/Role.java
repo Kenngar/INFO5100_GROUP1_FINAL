@@ -32,11 +32,10 @@ public abstract class Role {
         RetailAssociate("Retail Associate"),
         
         ManufacturingOperationsManager("Operations Manager"),
-        ProductionAnalyst("Production Analyst"),
+        ProductionAnalyst("Production Analyst");
         
         
         private String value;
-        
         private RoleType(String value){
             this.value = value;
         }
@@ -44,7 +43,6 @@ public abstract class Role {
         public String getValue() {
             return value;
         }
-
         @Override
         public String toString() {
             return value;
