@@ -28,8 +28,6 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private Enterprise enterprise;
 
-    private JTable requestTable;
-
     /**
      * Creates new form ProductionAnalystMenuJPanel
      */
@@ -61,6 +59,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
         lblTitle1 = new javax.swing.JLabel();
         btnSubmitPriority = new javax.swing.JButton();
         lblEnterprise = new javax.swing.JLabel();
+        btnClaim = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -103,7 +102,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnResponseActionPerformed(evt);
             }
         });
-        add(btnResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
+        add(btnResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnRefresh.setText("Refresh");
@@ -112,7 +111,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnRefreshActionPerformed(evt);
             }
         });
-        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
 
         lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         lblTitle1.setText("Production Analyst Menu");
@@ -132,6 +131,17 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
         lblEnterprise.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblEnterprise.setText("Enterprise:");
         add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 20));
+
+        btnClaim.setBackground(new java.awt.Color(0, 102, 204));
+        btnClaim.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnClaim.setForeground(new java.awt.Color(255, 255, 255));
+        btnClaim.setText("Claim Quote Request");
+        btnClaim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClaimActionPerformed(evt);
+            }
+        });
+        add(btnClaim, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResponseActionPerformed
@@ -141,7 +151,12 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a quote request from the list first.");
             return;
         }
-        RespondQuoteRequestJPanel panel = new RespondQuoteRequestJPanel(userProcessContainer, (QuoteRequest) selected);
+        QuoteRequest quoteRequest = (QuoteRequest) selected;
+        if (quoteRequest.getReceiver() != account) {
+            JOptionPane.showMessageDialog(this, "Claim this request first before responding.");
+            return;
+        }
+        RespondQuoteRequestJPanel panel = new RespondQuoteRequestJPanel(userProcessContainer, quoteRequest);
         userProcessContainer.add("RespondQuoteRequestJPanel", panel);
         ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
 
@@ -159,8 +174,31 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSubmitPriorityActionPerformed
 
+    private void btnClaimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaimActionPerformed
+        // TODO add your handling code here:
+        int row = tblWorkRequests.getSelectedRow();
+        WorkRequest selected = getRowRequest(row);
+        if (!(selected instanceof QuoteRequest)) {
+            JOptionPane.showMessageDialog(this, "Select an unclaimed quote request from the list first.");
+            return;
+        }
+        QuoteRequest quoteRequest = (QuoteRequest) selected;
+        if (quoteRequest.getReceiver() != null) {
+            JOptionPane.showMessageDialog(this, "This request has already been claimed.");
+            return;
+        }
+        quoteRequest.setReceiver(account);
+        quoteRequest.setStatus("Pending");
+        account.getWorkQueue().getWorkRequestList().add(quoteRequest);
+        JOptionPane.showMessageDialog(this, "Quote request claimed.");
+        populateTable();
+    
+
+    }//GEN-LAST:event_btnClaimActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClaim;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnResponse;
     private javax.swing.JButton btnSubmitPriority;
@@ -171,16 +209,16 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblWorkRequests.getModel();
         model.setRowCount(0);
 
-        // Outgoing priority requests (from this account's own queue)
+        // Outgoing priority requests + claimed quote requests (own queue)
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
             model.addRow(rowFor(request));
         }
-        // Incoming quote requests (sitting in the organization's queue, not yet in this account's queue)
+        // Incoming, still-unclaimed quote requests (sitting in the organization's queue)
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if (request instanceof Business.WorkQueue.QuoteRequest && !account.getWorkQueue().getWorkRequestList().contains(request)) {
+            if (request instanceof QuoteRequest && !account.getWorkQueue().getWorkRequestList().contains(request)) {
                 model.addRow(rowFor(request));
             }
         }
