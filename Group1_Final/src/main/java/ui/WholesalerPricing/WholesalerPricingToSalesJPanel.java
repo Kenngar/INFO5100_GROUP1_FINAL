@@ -6,15 +6,11 @@ package ui.WholesalerPricing;
 
 
 import Business.EcoSystem;
-import Business.OrderModel.Product;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PriceChangeRequest;
-import Business.WorkQueue.StoreManagerToRetailerAnalytRestockRequest;
-import Business.WorkQueue.StoreManagerToStoreRestockRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -39,8 +35,7 @@ public class WholesalerPricingToSalesJPanel extends javax.swing.JPanel {
         this.business = business;
         populateTable();
     }
-     public WholesalerPricingToSalesJPanel(JPanel userProcessContainer,
-                                                 WorkRequest request) {
+     public WholesalerPricingToSalesJPanel(JPanel userProcessContainer,WorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
@@ -71,7 +66,7 @@ public class WholesalerPricingToSalesJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("Messages from Retail Data Analyst");
+        jLabel1.setText("Messages from Sales");
 
         workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

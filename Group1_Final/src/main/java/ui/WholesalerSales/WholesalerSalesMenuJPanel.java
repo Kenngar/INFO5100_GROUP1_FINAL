@@ -48,6 +48,7 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnSalesData = new javax.swing.JButton();
         btnDataRequestPricing = new javax.swing.JButton();
+        btnSellProducts = new javax.swing.JButton();
 
         btnDataRequestManufacturer.setBackground(new java.awt.Color(102, 153, 255));
         btnDataRequestManufacturer.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,7 +64,7 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Retail Data Analyst Menu");
+        jLabel1.setText("Sales Menu");
 
         btnSalesData.setBackground(new java.awt.Color(102, 153, 255));
         btnSalesData.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,23 +92,35 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSellProducts.setBackground(new java.awt.Color(102, 153, 255));
+        btnSellProducts.setForeground(new java.awt.Color(255, 255, 255));
+        btnSellProducts.setText("Order Processing");
+        btnSellProducts.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSellProducts.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnSellProducts.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnSellProducts.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnSellProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSellProductsIdentifyResourceAssetsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSalesData, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(btnDataRequestPricing, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnDataRequestManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSalesData, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDataRequestManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDataRequestPricing, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(btnSellProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
                 .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,9 +132,11 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalesData, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDataRequestPricing, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(btnDataRequestManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDataRequestManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSellProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,12 +198,12 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         for (Organization org : targetEnterprise.getOrganizationDirectory().getOrganizationList()) {
             System.out.println("Checking org: " + org.getName()); // DEBUG
 
-            if (org.getName().equalsIgnoreCase("Supplier Pricing Organization")) {
+            if (org.getName().equalsIgnoreCase("Wholesaler Pricing Organization")) {
                 Organization targetOrg = org;
-                WholesalerPricingRequestJPanel wholesalerPricingRequestJPanel
-                        = new wholesalerPricingRequestJPanel(userProcessContainer,userAccount,targetOrg,business);
+                WholesalerSalesPricingRequestJPanel wholesalerSalesPricingRequestJPanel
+                        = new WholesalerSalesPricingRequestJPanel(userProcessContainer,userAccount,targetOrg,business);
 
-                userProcessContainer.add("WholesalerPricingRequestJPanel", wholesalerPricingRequestJPanel);
+                userProcessContainer.add("WholesalerPricingRequestJPanel", wholesalerSalesPricingRequestJPanel);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
 
@@ -196,11 +211,30 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDataRequestPricingActionPerformed
 
+    private void btnSellProductsIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellProductsIdentifyResourceAssetsActionPerformed
+        if (userProcessContainer == null) {
+            return;
+        }
+
+        // Same work area also shows inventory; you can reuse it
+        SellWholesalerProductsJPanel sellWholesalerProductsJPanel =
+        new SellWholesalerProductsJPanel(
+            userProcessContainer,
+            business
+        );
+
+        userProcessContainer.add("SellWholesalerProductsJPanel", sellWholesalerProductsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.show(userProcessContainer,"SellWholesalerProductsJPanel");
+
+    }//GEN-LAST:event_btnSellProductsIdentifyResourceAssetsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDataRequestManufacturer;
     private javax.swing.JButton btnDataRequestPricing;
     private javax.swing.JButton btnSalesData;
+    private javax.swing.JButton btnSellProducts;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
