@@ -46,6 +46,7 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
         txtETA = new javax.swing.JTextField();
         lblPriorityLevel = new javax.swing.JLabel();
         lblETA = new javax.swing.JLabel();
+        btnReject = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -56,11 +57,11 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         lblTitle.setText("Process Priority Request");
-        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         btnApprove.setBackground(new java.awt.Color(0, 102, 204));
         btnApprove.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -71,7 +72,7 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
                 btnApproveActionPerformed(evt);
             }
         });
-        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         cmbPriorityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         cmbPriorityLevel.addActionListener(new java.awt.event.ActionListener() {
@@ -79,16 +80,27 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
                 cmbPriorityLevelActionPerformed(evt);
             }
         });
-        add(cmbPriorityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 290, 40));
-        add(txtETA, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 290, 40));
+        add(cmbPriorityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 290, 40));
+        add(txtETA, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 290, 40));
 
         lblPriorityLevel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblPriorityLevel.setText("Priority Level (1 = highest, 5 = lowest):");
-        add(lblPriorityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
+        add(lblPriorityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 20));
 
         lblETA.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblETA.setText("Estimated Completion Date: ");
-        add(lblETA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        add(lblETA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        btnReject.setBackground(new java.awt.Color(204, 0, 51));
+        btnReject.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnReject.setForeground(new java.awt.Color(255, 255, 255));
+        btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -120,10 +132,19 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPriorityLevelActionPerformed
 
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        request.setApproved(false);
+        request.setStatus("Rejected");
+        JOptionPane.showMessageDialog(this, "Priority request rejected.");
+        btnBackActionPerformed(evt);
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnReject;
     private javax.swing.JComboBox<String> cmbPriorityLevel;
     private javax.swing.JLabel lblETA;
     private javax.swing.JLabel lblPriorityLevel;

@@ -49,6 +49,7 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnReject = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -86,7 +87,7 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 150, 30));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 150, 30));
 
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnBack.setText("<<Back");
@@ -100,6 +101,17 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("e.g. 4500.00");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 80, -1));
+
+        btnReject.setBackground(new java.awt.Color(204, 0, 0));
+        btnReject.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnReject.setForeground(new java.awt.Color(255, 255, 255));
+        btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -131,9 +143,19 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        request.setApproved(false);
+        request.setStatus("Rejected");
+
+        JOptionPane.showMessageDialog(this, "Quote request rejected.");
+        btnBackActionPerformed(evt);
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnReject;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblItem;
