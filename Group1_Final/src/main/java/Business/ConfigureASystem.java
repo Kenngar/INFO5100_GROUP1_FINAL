@@ -265,7 +265,7 @@ public class ConfigureASystem {
         }
     }
 
-    // Documents sales from supplier (Nike) to retailer (Dick's)
+    // Documents sales from wholesaler to retailer
     private static void configureWholesalerOrders(WholesalerProductCatalog wholesalerCatalog, EcoSystem system) {
 
         String[][] stores = {

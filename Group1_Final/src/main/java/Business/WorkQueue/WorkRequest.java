@@ -9,7 +9,11 @@ import java.util.Date;
 
 /**
  *
+<<<<<<< HEAD
  * @author anhnguyen
+=======
+ * @author Kenneth Garcia
+>>>>>>> Wholesaler-Kenneth-Garcia
  */
 public abstract class WorkRequest {
 

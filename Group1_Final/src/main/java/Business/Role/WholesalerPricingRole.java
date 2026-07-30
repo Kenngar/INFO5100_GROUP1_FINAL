@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.WholesalerPricing.WholesalerPricingMenuJPanel;
 import ui.WholesalerPricingRole.WholesalerPricingMenuJPanel;
 
 /**
