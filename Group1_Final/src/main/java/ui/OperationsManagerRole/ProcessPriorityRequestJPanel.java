@@ -7,6 +7,9 @@ package ui.OperationsManagerRole;
 import Business.WorkQueue.PriorityRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,6 +23,8 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private PriorityRequest request;
+
+    private static final SimpleDateFormat ETA_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 
     /**
      * Creates new form ProcessPriorityRequestJPanel
@@ -72,7 +77,7 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
                 btnApproveActionPerformed(evt);
             }
         });
-        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
 
         cmbPriorityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         cmbPriorityLevel.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +105,7 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
                 btnRejectActionPerformed(evt);
             }
         });
-        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -115,13 +120,24 @@ public class ProcessPriorityRequestJPanel extends javax.swing.JPanel {
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
-        if (txtETA.getText().trim().isEmpty()) {
+        String etaText = txtETA.getText().trim();
+        if (etaText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Estimated completion date is required.");
             return;
         }
+
+        Date eta;
+        try {
+            ETA_FORMAT.setLenient(false);
+            eta = ETA_FORMAT.parse(etaText);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Enter the date as MM/DD/YYYY, e.g. 08/15/2026.");
+            return;
+        }
+
         int priorityLevel = Integer.parseInt((String) cmbPriorityLevel.getSelectedItem());
         request.setPriorityLevel(priorityLevel);
-        request.setEstimatedCompletionDate(txtETA.getText().trim());
+        request.setEstimatedCompletionDate(eta);
         request.setApproved(true);
         request.setStatus("Completed");
         JOptionPane.showMessageDialog(this, "Priority request updated.");

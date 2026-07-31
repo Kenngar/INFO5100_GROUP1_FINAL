@@ -9,13 +9,16 @@ import java.util.Date;
 
 /**
  *
-<<<<<<< HEAD
- * @author anhnguyen
-=======
- * @author Kenneth Garcia
->>>>>>> Wholesaler-Kenneth-Garcia
+ * <<<<<<< HEAD
+ * @a
+ *
+ * uthor anhnguyen =======
+ * @author Kenneth Garcia >>>>>>> Wholesaler-Kenneth-Garcia
  */
 public abstract class WorkRequest {
+
+    private int id;
+    private static int counter = 1;
 
     private String message;
     private UserAccount sender;
@@ -25,7 +28,13 @@ public abstract class WorkRequest {
     private Date resolveDate;
 
     public WorkRequest() {
+        id = counter;
+        counter++;
         requestDate = new Date();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getMessage() {
