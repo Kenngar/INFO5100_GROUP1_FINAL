@@ -3,50 +3,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.RetailerAnalytics;
-import ui.RetailerAssociate.*;
-import ui.WholesalerSales.SellWholesalerProductsJPanel;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.OrderModel.Product;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JPanel;
-
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Kenneth Garcia
  */
 public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
     private Organization organization;
+    private Enterprise enterprise;
+
     /**
      * Creates new form WholesalerMenuJPanel
      */
-      public RetailerAnalyticsMenuJPanel() {
-        this(null, null, null, null);
-    }
-
-    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer,
-                                            UserAccount account,
-                                            Organization organization,
-                                            EcoSystem business) {
+    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = organization;
         this.business = business;
+        this.enterprise = enterprise;
+        
+        lblEnterprise.setText("Enterprise: " + enterprise.getName());
+
+        populateTable();
     }
-
-    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,106 +49,108 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        btnViewInventory = new javax.swing.JButton();
-        btnMessageSales = new javax.swing.JButton();
-        btnMessageManufacturer = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAnalytic = new javax.swing.JTable();
+        btnRefresh = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        lblEnterprise = new javax.swing.JLabel();
+        lblTotalValue = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Wholesaler Pricing Analyst Menu");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewInventory.setBackground(new java.awt.Color(102, 153, 255));
-        btnViewInventory.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewInventory.setText("View Inventory ");
-        btnViewInventory.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnViewInventory.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnViewInventory.setMinimumSize(new java.awt.Dimension(20, 23));
-        btnViewInventory.setPreferredSize(new java.awt.Dimension(240, 30));
-        btnViewInventory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewInventoryIdentifyResourceAssetsActionPerformed(evt);
+        tblAnalytic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product Name", "Price", "Available Qty", "Price Tier"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(tblAnalytic);
 
-        btnMessageSales.setBackground(new java.awt.Color(102, 153, 255));
-        btnMessageSales.setForeground(new java.awt.Color(255, 255, 255));
-        btnMessageSales.setText("Messages from Sales");
-        btnMessageSales.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMessageSales.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnMessageSales.setMinimumSize(new java.awt.Dimension(20, 20));
-        btnMessageSales.setPreferredSize(new java.awt.Dimension(240, 25));
-        btnMessageSales.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 650, 220));
+
+        btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMessageSalesActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 80, 30));
 
-        btnMessageManufacturer.setBackground(new java.awt.Color(102, 153, 255));
-        btnMessageManufacturer.setForeground(new java.awt.Color(255, 255, 255));
-        btnMessageManufacturer.setText("Messages from Manufacturer");
-        btnMessageManufacturer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMessageManufacturer.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnMessageManufacturer.setMinimumSize(new java.awt.Dimension(20, 23));
-        btnMessageManufacturer.setPreferredSize(new java.awt.Dimension(240, 30));
-        btnMessageManufacturer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMessageManufacturerIdentifyResourceAssetsActionPerformed(evt);
-            }
-        });
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+        lblTitle.setText("Retail Analyst Menu");
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnMessageManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addComponent(btnMessageSales, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMessageSales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(btnMessageManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
-        );
+        lblEnterprise.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lblEnterprise.setText("Enterprise:");
+        add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 20));
+
+        lblTotalValue.setFont(new java.awt.Font("Helvetica Neue", 1, 17)); // NOI18N
+        lblTotalValue.setText("Total Inventory Value:");
+        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewInventoryIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
-
-    private void btnMessageSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageSalesActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_btnMessageSalesActionPerformed
-
-    private void btnMessageManufacturerIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
-        // TODO add your handling code here:
- 
-    }//GEN-LAST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        populateTable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMessageManufacturer;
-    private javax.swing.JButton btnMessageSales;
-    private javax.swing.JButton btnViewInventory;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblEnterprise;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTotalValue;
+    private javax.swing.JTable tblAnalytic;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblAnalytic.getModel();
+        model.setRowCount(0);
+
+        double totalValue = 0;
+
+        for (Product product : business.getRetailerProductCatalog().getProductcatalog()) {
+            String tier;
+            if (product.getPrice() < 30) {
+                tier = "Budget";
+            } else if (product.getPrice() <= 70) {
+                tier = "Mid-range";
+            } else {
+                tier = "Premium";
+            }
+
+            Object[] row = new Object[4];
+            row[0] = product.getProdName();
+            row[1] = product.getPrice();
+            row[2] = product.getAvail();
+            row[3] = tier;
+            model.addRow(row);
+
+            totalValue += product.getPrice() * product.getAvail();
+        }
+
+        lblTotalValue.setText("Total Inventory Value: $" + String.format("%.2f", totalValue));
+    
+    }
 }
