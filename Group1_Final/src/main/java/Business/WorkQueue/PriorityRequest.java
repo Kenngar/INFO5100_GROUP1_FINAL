@@ -4,6 +4,8 @@
  */
 package Business.WorkQueue;
 
+import java.util.Date;
+
 /**
  * Production Analyst asks the Operations Manager to set a priority level,
  * manufacturing schedule, and completion date for an item.
@@ -14,7 +16,7 @@ public class PriorityRequest extends WorkRequest {
 
     private String itemName;
     private int priorityLevel;              // 1 (highest) - 5 (lowest), set by Operations Manager
-    private String estimatedCompletionDate;  // set by Operations Manager
+    private Date estimatedCompletionDate;  // set by Operations Manager
     private boolean approved = false;
 
     public String getItemName() {
@@ -33,11 +35,11 @@ public class PriorityRequest extends WorkRequest {
         this.priorityLevel = priorityLevel;
     }
 
-    public String getEstimatedCompletionDate() {
+    public Date getEstimatedCompletionDate() {
         return estimatedCompletionDate;
     }
 
-    public void setEstimatedCompletionDate(String estimatedCompletionDate) {
+    public void setEstimatedCompletionDate(Date estimatedCompletionDate) {
         this.estimatedCompletionDate = estimatedCompletionDate;
     }
 

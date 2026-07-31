@@ -13,7 +13,6 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,25 +59,26 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
         btnSubmitPriority = new javax.swing.JButton();
         lblEnterprise = new javax.swing.JLabel();
         btnClaim = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Type", "Message", "Status", "With"
+                "ID", "Type", "Message", "Status", "With"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,7 +102,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnResponseActionPerformed(evt);
             }
         });
-        add(btnResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
+        add(btnResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
         btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnRefresh.setText("Refresh");
@@ -141,7 +141,18 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnClaimActionPerformed(evt);
             }
         });
-        add(btnClaim, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
+        add(btnClaim, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+
+        btnDelete.setBackground(new java.awt.Color(204, 0, 51));
+        btnDelete.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete Selected");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResponseActionPerformed
@@ -192,13 +203,41 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
         account.getWorkQueue().getWorkRequestList().add(quoteRequest);
         JOptionPane.showMessageDialog(this, "Quote request claimed.");
         populateTable();
-    
+
 
     }//GEN-LAST:event_btnClaimActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int row = tblWorkRequests.getSelectedRow();
+        WorkRequest selected = getRowRequest(row);
+        if (selected == null) {
+            JOptionPane.showMessageDialog(this, "Select a request first.");
+            return;
+        }
+        if (selected.getSender() != account) {
+            JOptionPane.showMessageDialog(this, "You can only delete requests you sent yourself.");
+            return;
+        }
+        if (!"Sent".equals(selected.getStatus())) {
+            JOptionPane.showMessageDialog(this, "Only a request that's still \"Sent\" (not yet claimed) can be deleted.");
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Delete this request? This cannot be undone.",
+                "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+        account.getWorkQueue().getWorkRequestList().remove(selected);
+        organization.getWorkQueue().getWorkRequestList().remove(selected);
+        populateTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClaim;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnResponse;
     private javax.swing.JButton btnSubmitPriority;
@@ -225,11 +264,12 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
     }
 
     private Object[] rowFor(WorkRequest request) {
-        Object[] row = new Object[4];
-        row[0] = request.getClass().getSimpleName();
-        row[1] = request.getMessage();
-        row[2] = request.getStatus();
-        row[3] = request.getSender() == account
+        Object[] row = new Object[5];
+        row[0] = request.getId();
+        row[1] = request.getClass().getSimpleName();
+        row[2] = request.getMessage();
+        row[3] = request.getStatus();
+        row[4] = request.getSender() == account
                 ? (request.getReceiver() == null ? "(unassigned)" : request.getReceiver().getUsername())
                 : (request.getSender() == null ? "(unknown)" : request.getSender().getUsername());
         return row;
@@ -256,5 +296,4 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
         }
         return null;
     }
-
 }
