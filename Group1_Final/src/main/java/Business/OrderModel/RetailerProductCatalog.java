@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author archil
+ * @author Kenneth Garcia
  */
 public class RetailerProductCatalog {
 
