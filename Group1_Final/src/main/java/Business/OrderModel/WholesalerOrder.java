@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author kens2
+ * @author Kenneth Garcia
  */
-// Supplier to retailer
+// Wholesaler to retailer
 public class WholesalerOrder {
     ArrayList<OrderItem> orderItemList;
 

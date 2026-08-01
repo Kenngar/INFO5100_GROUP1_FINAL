@@ -3,21 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.RetailerAnalytics;
-
+import ui.WholesalerSales.SellWholesalerProductsJPanel;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.OrderModel.Product;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Kenneth Garcia
  */
 public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
-
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
@@ -25,20 +22,25 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
 
     /**
-     * Creates new form WholesalerMenuJPanel
+     * Creates new form RetailerAnalystMenu
      */
-    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
+    public RetailerAnalyticsMenuJPanel() {
+        
+    }
+
+    // Real constructor used from Role.createWorkArea(...)
+    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer,
+                                       UserAccount account,
+                                       Organization organization,
+                                       EcoSystem business, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = organization;
         this.business = business;
         this.enterprise = enterprise;
-        
-        lblEnterprise.setText("Enterprise: " + enterprise.getName());
-
-        populateTable();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,108 +51,150 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAnalytic = new javax.swing.JTable();
-        btnRefresh = new javax.swing.JButton();
-        lblTitle = new javax.swing.JLabel();
-        lblEnterprise = new javax.swing.JLabel();
-        lblTotalValue = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnRetailerBusinessViewInventory = new javax.swing.JButton();
+        btnRetailerBusinessViewInventory2 = new javax.swing.JButton();
+        btnRetailerBusinessViewInventory3 = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setText("Retail Analyst Menu");
 
-        tblAnalytic.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Product Name", "Price", "Available Qty", "Price Tier"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblAnalytic);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 650, 220));
-
-        btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnRetailerBusinessViewInventory.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory.setText("Confirm Store Manager Requests");
+        btnRetailerBusinessViewInventory.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+                btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed(evt);
             }
         });
-        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 80, 30));
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        lblTitle.setText("Retail Analyst Menu");
-        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        btnRetailerBusinessViewInventory2.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory2.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory2.setText("View Sales Data");
+        btnRetailerBusinessViewInventory2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory2.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory2.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory2.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed(evt);
+            }
+        });
 
-        lblEnterprise.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lblEnterprise.setText("Enterprise:");
-        add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 20));
+        btnRetailerBusinessViewInventory3.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory3.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory3.setText("Sales Analytics");
+        btnRetailerBusinessViewInventory3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory3.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory3.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory3.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed(evt);
+            }
+        });
 
-        lblTotalValue.setFont(new java.awt.Font("Helvetica Neue", 1, 17)); // NOI18N
-        lblTotalValue.setText("Total Inventory Value:");
-        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRetailerBusinessViewInventory3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetailerBusinessViewInventory2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(btnRetailerBusinessViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(146, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetailerBusinessViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRetailerBusinessViewInventory2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRetailerBusinessViewInventory3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        populateTable();
-    }//GEN-LAST:event_btnRefreshActionPerformed
+    private void btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed
+        // TODO add your handling code here:
+    
+        
+        RetailerAnalyticsToManagerRequest workAreaPanel =
+            new RetailerAnalyticsToManagerRequest(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business
+            );
+
+        userProcessContainer.add("RetailBusinessAnalystWorkAreaJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed
+
+    private void btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed
+        // TODO add your handling code here:
+        if (userProcessContainer == null) {
+            return;
+        }
+
+
+        OrderHistoryJPanel workAreaPanel =
+            new OrderHistoryJPanel(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business
+            );
+
+        userProcessContainer.add("OrderHistoryJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed
+
+    private void btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed
+        // TODO add your handling code here:
+        if (userProcessContainer == null) {
+            return;
+        }
+
+
+        AnalyticsJPanel workAreaPanel =
+            new AnalyticsJPanel(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business
+            );
+
+        userProcessContainer.add("AnalyticsJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRefresh;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblEnterprise;
-    private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblTotalValue;
-    private javax.swing.JTable tblAnalytic;
+    private javax.swing.JButton btnRetailerBusinessViewInventory;
+    private javax.swing.JButton btnRetailerBusinessViewInventory2;
+    private javax.swing.JButton btnRetailerBusinessViewInventory3;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-
-    private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) tblAnalytic.getModel();
-        model.setRowCount(0);
-
-        double totalValue = 0;
-
-        for (Product product : business.getRetailerProductCatalog().getProductcatalog()) {
-            String tier;
-            if (product.getPrice() < 30) {
-                tier = "Budget";
-            } else if (product.getPrice() <= 70) {
-                tier = "Mid-range";
-            } else {
-                tier = "Premium";
-            }
-
-            Object[] row = new Object[4];
-            row[0] = product.getProdName();
-            row[1] = product.getPrice();
-            row[2] = product.getAvail();
-            row[3] = tier;
-            model.addRow(row);
-
-            totalValue += product.getPrice() * product.getAvail();
-        }
-
-        lblTotalValue.setText("Total Inventory Value: $" + String.format("%.2f", totalValue));
-    
-    }
 }

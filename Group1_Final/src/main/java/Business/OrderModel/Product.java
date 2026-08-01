@@ -7,7 +7,7 @@ package Business.OrderModel;
  
 /**
 *
-* @author archil
+* @author Kenneth Garcia
 */
 public class Product {
  
