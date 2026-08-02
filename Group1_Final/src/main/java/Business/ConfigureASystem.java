@@ -44,13 +44,13 @@ public class ConfigureASystem {
         configureUsers(system);
         // -- Enterprises ------------------------------------------------------
         Enterprise wholesalerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Nike", Enterprise.EnterpriseType.WHOLESALER);
+                .createAndAddEnterprise("Wholesaler", Enterprise.EnterpriseType.WHOLESALER);
 
         Enterprise manufacturerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Sports Manufacturing Co.", Enterprise.EnterpriseType.MANUFACTURER);
+                .createAndAddEnterprise("Manufacturer", Enterprise.EnterpriseType.MANUFACTURER);
 
         Enterprise retailerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Dick's Sporting Goods", Enterprise.EnterpriseType.RETAILER);
+                .createAndAddEnterprise("Retailer", Enterprise.EnterpriseType.RETAILER);
 
         // -- Organizations ----------------------------------------------------
         configureOrganizations(wholesalerEnterprise, manufacturerEnterprise, retailerEnterprise);
@@ -69,11 +69,11 @@ public class ConfigureASystem {
             Enterprise manufacturer, Enterprise retailer) {
 
         // -----------------------------------------------------------------------
-        // SUPPLIER / RETAIL BRAND (Nike)
+        // Wholesaler
         // -----------------------------------------------------------------------
-        // 1. Supplier Pricing Organization
-        //    -> Brand/Supplier Pricing Analyst
-        //    -> Retail Data Analyst
+        // 1. Wholesaler Pricing Organization
+        //    -> Wholesaler Pricing Analyst
+     
         Organization wholesalerAdminOrg = wholesaler.getOrganizationDirectory()
                 .createOrganization(Organization.Type.Admin);
         wholesalerAdminOrg.setName("Wholesaler Admin Organization");
@@ -100,7 +100,7 @@ public class ConfigureASystem {
         wholesalerSalesOrg.getUserAccountDirectory().createUserAccount(
                 "wholesalersales", "wholesalersales", wholesalerSalesEmp, new WholesalerSalesRole());
 
-        // 2. Supplier Marketing Organization
+        // 2. Wholesaler Marketing Organization
         //    -> Marketing Specialist
         Organization wholesalerMarketingOrg = wholesaler.getOrganizationDirectory()
                 .createOrganization(Organization.Type.WholesalerMarketing);
@@ -123,10 +123,10 @@ public class ConfigureASystem {
         retailerAdminOrg.getUserAccountDirectory().createUserAccount(
                 "retaileradmin", "retaileradmin", retailerAdminEmp, new RetailerEnterpriseAdminRole());
 
-        // 3. Retail Analytics Organization
-        //    -> Retail Business Analyst
+        // 3. Retailer Analytics Organization
+        //    -> Retailer Analytics
         Organization retailerAnalyticsOrg = retailer.getOrganizationDirectory()
-                .createOrganization(Organization.Type.RetailerAnalytics); // swap type when RetailerAnalytics type is added
+                .createOrganization(Organization.Type.RetailerAnalytics); 
         retailerAnalyticsOrg.setName("Retailer Analytics Organization");
 
         Employee retailerAnalyticsEmp = retailerAnalyticsOrg.getEmployeeDirectory()

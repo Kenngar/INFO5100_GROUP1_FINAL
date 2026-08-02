@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Kenneth Garcia
+ * @author Anh Nguyen
  */
 public class AnalyticsJPanel extends javax.swing.JPanel {
 
