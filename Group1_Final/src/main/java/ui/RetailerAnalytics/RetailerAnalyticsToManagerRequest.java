@@ -6,22 +6,17 @@ package ui.RetailerAnalytics;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.OrderModel.Product;
 import Business.Organization.Organization;
-import Business.Organization.RetailDataAnalyticsOrganization;
-import Business.Organization.RetailStoreOrganization;
+import Business.Organization.RetailerAnalyticsOrganization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.ManufacturingQuotesRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.WorkQueue.StoreManagerToRetailBARestockRequest;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author raunak
+ * @author Kenneth Garcia
  */
 public class RetailerAnalyticsToManagerRequest extends javax.swing.JPanel {
 
@@ -40,7 +35,7 @@ public class RetailerAnalyticsToManagerRequest extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.organization = (RetailDataAnalyticsOrganization) organization;
+        this.organization = (RetailerAnalyticsOrganization) organization;
         this.enterprise = enterprise;
         populateTable();
 
@@ -166,41 +161,6 @@ public class RetailerAnalyticsToManagerRequest extends javax.swing.JPanel {
 
     private void assignJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButton1ActionPerformed
 
-        int selectedRow = workRequestJTable1.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a request.");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
-        StoreManagerToRetailBARestockRequest request
-                = (StoreManagerToRetailBARestockRequest) model.getValueAt(selectedRow, 0);
-
-        String verdict = JOptionPane.showInputDialog(
-                this,
-                "Enter Verdict (Approve / Deny):",
-                "Restock Decision",
-                JOptionPane.PLAIN_MESSAGE
-        );
-
-        if (verdict == null || verdict.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Verdict cannot be empty.");
-            return;
-        }
-
-        verdict = verdict.trim();
-
-// Set ONLY status
-        request.setStatus(
-                verdict.equalsIgnoreCase("Approve") ? "Approved" : "Denied"
-        );
-
-// do NOT touch message
-        JOptionPane.showMessageDialog(this,
-                "Decision recorded: " + request.getStatus()
-        );
-
-        populateTable();
 
     }//GEN-LAST:event_assignJButton1ActionPerformed
 
