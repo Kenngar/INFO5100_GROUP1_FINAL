@@ -20,7 +20,7 @@ public class StoreAssociateRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AssociateMenuJPanel(userProcessContainer, account, organization, business);
+        return new AssociateMenuJPanel(userProcessContainer, account, organization, enterprise, business);
     }
     
 }

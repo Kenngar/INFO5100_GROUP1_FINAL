@@ -40,9 +40,6 @@ public class AnalyticsJPanel extends javax.swing.JPanel {
         populateTable();
     }
 
-    AnalyticsJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
