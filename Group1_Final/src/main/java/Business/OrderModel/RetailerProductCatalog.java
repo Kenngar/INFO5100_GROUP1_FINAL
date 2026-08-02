@@ -33,6 +33,18 @@ public class RetailerProductCatalog {
     public void removeProduct(Product p) {
         productCatalog.remove(p);
     }
+     public Product searchProductByName(String name) {
+        if (name == null) {
+            return null;
+        }
+        for (Product product : productCatalog) {
+            if (product.getProdName() != null
+                    && product.getProdName().equalsIgnoreCase(name.trim())) {
+                return product;
+            }
+        }
+        return null;
+    }
 
     public Product searchProduct(int id) {
         for (Product product : productCatalog) {
