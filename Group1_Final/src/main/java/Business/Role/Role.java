@@ -27,9 +27,9 @@ public abstract class Role {
         WholesalerSales("Wholesaler Sales"),
         WholesalerMarketing("Wholesaler Marketing"),
         
-        RetailBusinessAnalyst("Retail Analyst"),
-        RetailManager("Retail Manager"),
-        RetailAssociate("Retail Associate"),
+        RetailerAnalytics("Retailer Analytics"),
+        RetailerManager("Retailer Manager"),
+        RetailerAssociate("Retailer Associate"),
         
         ManufacturingOperationsManager("Operations Manager"),
         ProductionAnalyst("Production Analyst");

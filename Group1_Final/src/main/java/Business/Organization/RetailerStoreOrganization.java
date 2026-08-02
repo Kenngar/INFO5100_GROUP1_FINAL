@@ -33,7 +33,6 @@ public class RetailerStoreOrganization extends Organization{
         ArrayList<Role> roles = new ArrayList();
         roles.add(new StoreManagerRole());
         roles.add(new StoreAssociateRole());
-        roles.add(new RetailerAnalyticsRole());
         return roles;
     }
 

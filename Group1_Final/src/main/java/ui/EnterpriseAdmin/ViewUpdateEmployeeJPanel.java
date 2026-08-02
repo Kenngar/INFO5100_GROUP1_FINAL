@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hannahchiou
+ * @author Kenneth Garcia
  */
 public class ViewUpdateEmployeeJPanel extends javax.swing.JPanel {
 

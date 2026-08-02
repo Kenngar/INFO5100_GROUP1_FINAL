@@ -53,7 +53,7 @@ public class MarketingMenuJPanel extends javax.swing.JPanel {
         btnMarketingViewInventory = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Retail Marketing Specialist Menu");
+        jLabel1.setText("Marketing Menu");
 
         btnMarketingViewInventory.setBackground(new java.awt.Color(102, 153, 255));
         btnMarketingViewInventory.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,7 +94,7 @@ public class MarketingMenuJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Organization targetOrg = null;
     
-        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Nike")).findFirst().orElse(null);
+        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Wholesaler")).findFirst().orElse(null);
         for (Organization org : targetEnterprise.getOrganizationDirectory().getOrganizationList()) {
             System.out.println("Checking org: " + org.getName()); // DEBUG
 

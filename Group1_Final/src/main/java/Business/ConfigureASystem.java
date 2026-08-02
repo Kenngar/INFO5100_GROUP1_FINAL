@@ -148,7 +148,7 @@ public class ConfigureASystem {
         Employee storeAssociate1Emp = store1.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         store1.getUserAccountDirectory().createUserAccount(
-                "storeassociate", "storeassociate", storeAssociate1Emp, new StoreAssociateRole());
+                "associate", "associate", storeAssociate1Emp, new StoreAssociateRole());
 
         // 5. Retail Store Organization - Store 2
         Organization store2 = retailer.getOrganizationDirectory()

@@ -181,7 +181,8 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
                 userProcessContainer,
                 userAccount,
                 organization,
-                business
+                business,
+                enterprise
             );
 
         userProcessContainer.add("AnalyticsJPanel", workAreaPanel);
