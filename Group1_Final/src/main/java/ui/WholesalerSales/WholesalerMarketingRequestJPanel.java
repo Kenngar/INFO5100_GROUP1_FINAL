@@ -189,7 +189,7 @@ public class WholesalerMarketingRequestJPanel extends javax.swing.JPanel {
         request.setSender(userAccount);
         request.setStatus("Sent");
 
-        // Add to Supplier Pricing org queue and (optionally) to sender's queue
+        // Add to Wholesaler Pricing org queue and (optionally) to sender's queue
         wholesalerMarketingOrganization.getWorkQueue().getWorkRequestList().add(request);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
 

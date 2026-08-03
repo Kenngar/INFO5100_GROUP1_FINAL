@@ -3,16 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.RetailerAnalytics;
-import ui.RetailerAssociate.*;
-import ui.WholesalerSales.SellWholesalerProductsJPanel;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-
-
 /**
  *
  * @author Kenneth Garcia
@@ -22,30 +18,27 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Organization organization;
+    private Enterprise enterprise;
+
     /**
-     * Creates new form WholesalerMenuJPanel
+     * Creates new form RetailerAnalystMenu
      */
-      public RetailerAnalyticsMenuJPanel() {
-        this(null, null, null, null);
+    public RetailerAnalyticsMenuJPanel() {
+        
     }
 
+    // Real constructor used from Role.createWorkArea(...)
     public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer,
-                                            UserAccount account,
-                                            Organization organization,
-                                            EcoSystem business) {
+                                       UserAccount account,
+                                       Organization organization,
+                                       EcoSystem business, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = organization;
         this.business = business;
+        this.enterprise = enterprise;
     }
-
-    public RetailerAnalyticsMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-
 
 
     /**
@@ -58,49 +51,49 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnViewInventory = new javax.swing.JButton();
-        btnMessageSales = new javax.swing.JButton();
-        btnMessageManufacturer = new javax.swing.JButton();
+        btnRetailerBusinessViewInventory = new javax.swing.JButton();
+        btnRetailerBusinessViewInventory2 = new javax.swing.JButton();
+        btnRetailerBusinessViewInventory3 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Wholesaler Pricing Analyst Menu");
+        jLabel1.setText("Retail Analyst Menu");
 
-        btnViewInventory.setBackground(new java.awt.Color(102, 153, 255));
-        btnViewInventory.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewInventory.setText("View Inventory ");
-        btnViewInventory.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnViewInventory.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnViewInventory.setMinimumSize(new java.awt.Dimension(20, 23));
-        btnViewInventory.setPreferredSize(new java.awt.Dimension(240, 30));
-        btnViewInventory.addActionListener(new java.awt.event.ActionListener() {
+        btnRetailerBusinessViewInventory.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory.setText("Confirm Store Manager Requests");
+        btnRetailerBusinessViewInventory.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewInventoryIdentifyResourceAssetsActionPerformed(evt);
+                btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed(evt);
             }
         });
 
-        btnMessageSales.setBackground(new java.awt.Color(102, 153, 255));
-        btnMessageSales.setForeground(new java.awt.Color(255, 255, 255));
-        btnMessageSales.setText("Messages from Sales");
-        btnMessageSales.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMessageSales.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnMessageSales.setMinimumSize(new java.awt.Dimension(20, 20));
-        btnMessageSales.setPreferredSize(new java.awt.Dimension(240, 25));
-        btnMessageSales.addActionListener(new java.awt.event.ActionListener() {
+        btnRetailerBusinessViewInventory2.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory2.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory2.setText("View Sales Data");
+        btnRetailerBusinessViewInventory2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory2.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory2.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory2.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMessageSalesActionPerformed(evt);
+                btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed(evt);
             }
         });
 
-        btnMessageManufacturer.setBackground(new java.awt.Color(102, 153, 255));
-        btnMessageManufacturer.setForeground(new java.awt.Color(255, 255, 255));
-        btnMessageManufacturer.setText("Messages from Manufacturer");
-        btnMessageManufacturer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMessageManufacturer.setMaximumSize(new java.awt.Dimension(200, 40));
-        btnMessageManufacturer.setMinimumSize(new java.awt.Dimension(20, 23));
-        btnMessageManufacturer.setPreferredSize(new java.awt.Dimension(240, 30));
-        btnMessageManufacturer.addActionListener(new java.awt.event.ActionListener() {
+        btnRetailerBusinessViewInventory3.setBackground(new java.awt.Color(102, 153, 255));
+        btnRetailerBusinessViewInventory3.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetailerBusinessViewInventory3.setText("Sales Analytics");
+        btnRetailerBusinessViewInventory3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetailerBusinessViewInventory3.setMaximumSize(new java.awt.Dimension(200, 40));
+        btnRetailerBusinessViewInventory3.setMinimumSize(new java.awt.Dimension(20, 23));
+        btnRetailerBusinessViewInventory3.setPreferredSize(new java.awt.Dimension(240, 30));
+        btnRetailerBusinessViewInventory3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMessageManufacturerIdentifyResourceAssetsActionPerformed(evt);
+                btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed(evt);
             }
         });
 
@@ -109,54 +102,99 @@ public class RetailerAnalyticsMenuJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnMessageManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addComponent(btnMessageSales, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRetailerBusinessViewInventory3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetailerBusinessViewInventory2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(btnRetailerBusinessViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMessageSales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(btnMessageManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addComponent(btnRetailerBusinessViewInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRetailerBusinessViewInventory2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRetailerBusinessViewInventory3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewInventoryIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
+    private void btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
+    
+        
+        RetailerAnalyticsToManagerRequest workAreaPanel =
+            new RetailerAnalyticsToManagerRequest(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business
+            );
 
-    }//GEN-LAST:event_btnViewInventoryIdentifyResourceAssetsActionPerformed
+        userProcessContainer.add("RetailBusinessAnalystWorkAreaJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
 
-    private void btnMessageSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageSalesActionPerformed
+    }//GEN-LAST:event_btnRetailerBusinessViewInventoryIdentifyResourceAssetsActionPerformed
+
+    private void btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
-      
-    }//GEN-LAST:event_btnMessageSalesActionPerformed
+        if (userProcessContainer == null) {
+            return;
+        }
 
-    private void btnMessageManufacturerIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
+
+        OrderHistoryJPanel workAreaPanel =
+            new OrderHistoryJPanel(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business
+            );
+
+        userProcessContainer.add("OrderHistoryJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_btnRetailerBusinessViewInventory2IdentifyResourceAssetsActionPerformed
+
+    private void btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
- 
-    }//GEN-LAST:event_btnMessageManufacturerIdentifyResourceAssetsActionPerformed
+        if (userProcessContainer == null) {
+            return;
+        }
+
+
+        AnalyticsJPanel workAreaPanel =
+            new AnalyticsJPanel(
+                userProcessContainer,
+                userAccount,
+                organization,
+                business,
+                enterprise
+            );
+
+        userProcessContainer.add("AnalyticsJPanel", workAreaPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnRetailerBusinessViewInventory3IdentifyResourceAssetsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMessageManufacturer;
-    private javax.swing.JButton btnMessageSales;
-    private javax.swing.JButton btnViewInventory;
+    private javax.swing.JButton btnRetailerBusinessViewInventory;
+    private javax.swing.JButton btnRetailerBusinessViewInventory2;
+    private javax.swing.JButton btnRetailerBusinessViewInventory3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

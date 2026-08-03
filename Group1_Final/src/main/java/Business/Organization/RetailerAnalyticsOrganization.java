@@ -12,13 +12,11 @@ import java.util.ArrayList;
  *
  * @author Kenneth Garcia
  */
-public class RetailerAnalyticsOrganization extends Organization{
-
+public class RetailerAnalyticsOrganization extends Organization {
 
     public RetailerAnalyticsOrganization() {
         super(Organization.Type.RetailerAnalytics.getValue());
     }
-
 
     @Override
     public ArrayList<Role> getSupportedRole() {
@@ -34,9 +32,7 @@ public class RetailerAnalyticsOrganization extends Organization{
 
     @Override
     public Type getType() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Organization.Type.RetailerAnalytics;
     }
-    
-    
+
 }
- 

@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * Store Associate work area: view on-shelf inventory, ring up a sale
  * (checkout), and flag items that are needed at the store.
  *
- * @author Kenneth Garcia
+ * @author Christopher Carmant
  */
 public class AssociateMenuJPanel extends javax.swing.JPanel {
 
@@ -42,9 +42,6 @@ public class AssociateMenuJPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public AssociateMenuJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     private void initComponents() {
         setBorder(BorderFactory.createEmptyBorder(40, 60, 40, 60));

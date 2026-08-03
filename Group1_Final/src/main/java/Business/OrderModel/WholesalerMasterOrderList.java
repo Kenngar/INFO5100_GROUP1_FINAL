@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author kens2
+ * @author Kenneth Garcia
  */
 public class WholesalerMasterOrderList {
     ArrayList<WholesalerOrder> orderList;

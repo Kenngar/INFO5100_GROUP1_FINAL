@@ -111,7 +111,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnRefreshActionPerformed(evt);
             }
         });
-        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
 
         lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         lblTitle1.setText("Production Analyst Menu");
@@ -152,7 +152,7 @@ public class ProductionAnalystMenuJPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResponseActionPerformed

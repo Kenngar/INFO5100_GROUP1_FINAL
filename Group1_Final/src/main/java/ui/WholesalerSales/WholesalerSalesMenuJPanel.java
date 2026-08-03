@@ -145,11 +145,11 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         if (userProcessContainer == null) {
             return;
         }
-        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Nike")).findFirst().orElse(null);
+        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Wholesaler")).findFirst().orElse(null);
         for (Organization org : targetEnterprise.getOrganizationDirectory().getOrganizationList()) {
             System.out.println("Checking org: " + org.getName()); // DEBUG
 
-            if (org.getName().equalsIgnoreCase("Supplier Marketing Organization")) {
+            if (org.getName().equalsIgnoreCase("Wholesaler Marketing Organization")) {
                 Organization targetOrg = org;
                 // Go to the panel that lets analyst make manufacturer & pricing requests
                 WholesalerMarketingRequestJPanel panel
@@ -169,7 +169,7 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
 
     private void btnSalesDataIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesDataIdentifyResourceAssetsActionPerformed
         // TODO add your handling code here:
-        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Nike")).findFirst().orElse(null);
+        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Wholesaler")).findFirst().orElse(null);
         for (Organization org : targetEnterprise.getOrganizationDirectory().getOrganizationList()) {
             System.out.println("Checking org: " + org.getName()); // DEBUG
 
@@ -194,7 +194,7 @@ public class WholesalerSalesMenuJPanel extends javax.swing.JPanel {
         if (userProcessContainer == null) {
             return;
         }
-        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Nike")).findFirst().orElse(null);
+        Enterprise targetEnterprise = business.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().stream().filter(e -> e.getName().equals("Wholesaler")).findFirst().orElse(null);
         for (Organization org : targetEnterprise.getOrganizationDirectory().getOrganizationList()) {
             System.out.println("Checking org: " + org.getName()); // DEBUG
 

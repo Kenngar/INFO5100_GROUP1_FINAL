@@ -26,7 +26,6 @@ import com.github.javafaker.Faker;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  *
  * @author rrheg
@@ -45,13 +44,13 @@ public class ConfigureASystem {
         configureUsers(system);
         // -- Enterprises ------------------------------------------------------
         Enterprise wholesalerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Nike", Enterprise.EnterpriseType.WHOLESALER);
+                .createAndAddEnterprise("Wholesaler", Enterprise.EnterpriseType.WHOLESALER);
 
         Enterprise manufacturerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Sports Manufacturing Co.", Enterprise.EnterpriseType.MANUFACTURER);
+                .createAndAddEnterprise("Manufacturer", Enterprise.EnterpriseType.MANUFACTURER);
 
         Enterprise retailerEnterprise = network.getEnterpriseDirectory()
-                .createAndAddEnterprise("Dick's Sporting Goods", Enterprise.EnterpriseType.RETAILER);
+                .createAndAddEnterprise("Retailer", Enterprise.EnterpriseType.RETAILER);
 
         // -- Organizations ----------------------------------------------------
         configureOrganizations(wholesalerEnterprise, manufacturerEnterprise, retailerEnterprise);
@@ -70,29 +69,28 @@ public class ConfigureASystem {
             Enterprise manufacturer, Enterprise retailer) {
 
         // -----------------------------------------------------------------------
-        // SUPPLIER / RETAIL BRAND (Nike)
+        // Wholesaler
         // -----------------------------------------------------------------------
-        // 1. Supplier Pricing Organization
-        //    -> Brand/Supplier Pricing Analyst
-        //    -> Retail Data Analyst
+        // 1. Wholesaler Pricing Organization
+        //    -> Wholesaler Pricing Analyst
+     
         Organization wholesalerAdminOrg = wholesaler.getOrganizationDirectory()
                 .createOrganization(Organization.Type.Admin);
         wholesalerAdminOrg.setName("Wholesaler Admin Organization");
- 
+
         Employee wholesalerAdminEmp = wholesalerAdminOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         wholesalerAdminOrg.getUserAccountDirectory().createUserAccount(
                 "wholesaleradmin", "wholesaleradmin", wholesalerAdminEmp, new WholesalerEnterpriseAdminRole());
-        
+
         Organization wholesalerPricingOrg = wholesaler.getOrganizationDirectory().createOrganization(Organization.Type.WholesalerPricing);
         wholesalerPricingOrg.setName("Wholesaler Pricing Organization");
-        
 
         Employee wholesalerPricingEmp = wholesalerPricingOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         wholesalerPricingOrg.getUserAccountDirectory().createUserAccount(
                 "wholesalerpricing", "wholesalerpricing", wholesalerPricingEmp, new WholesalerPricingRole());
-        
+
         Organization wholesalerSalesOrg = wholesaler.getOrganizationDirectory()
                 .createOrganization(Organization.Type.WholesalerSales);
         wholesalerSalesOrg.setName("Wholesaler Sales Organization");
@@ -102,7 +100,7 @@ public class ConfigureASystem {
         wholesalerSalesOrg.getUserAccountDirectory().createUserAccount(
                 "wholesalersales", "wholesalersales", wholesalerSalesEmp, new WholesalerSalesRole());
 
-        // 2. Supplier Marketing Organization
+        // 2. Wholesaler Marketing Organization
         //    -> Marketing Specialist
         Organization wholesalerMarketingOrg = wholesaler.getOrganizationDirectory()
                 .createOrganization(Organization.Type.WholesalerMarketing);
@@ -116,19 +114,19 @@ public class ConfigureASystem {
         // -----------------------------------------------------------------------
         // RETAILER (Sports Goods)
         // -----------------------------------------------------------------------
-         Organization retailerAdminOrg = retailer.getOrganizationDirectory()
+        Organization retailerAdminOrg = retailer.getOrganizationDirectory()
                 .createOrganization(Organization.Type.Admin);
         retailerAdminOrg.setName("Retailer Admin Organization");
- 
+
         Employee retailerAdminEmp = retailerAdminOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         retailerAdminOrg.getUserAccountDirectory().createUserAccount(
                 "retaileradmin", "retaileradmin", retailerAdminEmp, new RetailerEnterpriseAdminRole());
-        
-        // 3. Retail Analytics Organization
-        //    -> Retail Business Analyst
+
+        // 3. Retailer Analytics Organization
+        //    -> Retailer Analytics
         Organization retailerAnalyticsOrg = retailer.getOrganizationDirectory()
-                .createOrganization(Organization.Type.RetailerAnalytics); // swap type when RetailerAnalytics type is added
+                .createOrganization(Organization.Type.RetailerAnalytics); 
         retailerAnalyticsOrg.setName("Retailer Analytics Organization");
 
         Employee retailerAnalyticsEmp = retailerAnalyticsOrg.getEmployeeDirectory()
@@ -150,7 +148,7 @@ public class ConfigureASystem {
         Employee storeAssociate1Emp = store1.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         store1.getUserAccountDirectory().createUserAccount(
-                "storeassociate", "storeassociate", storeAssociate1Emp, new StoreAssociateRole());
+                "associate", "associate", storeAssociate1Emp, new StoreAssociateRole());
 
         // 5. Retail Store Organization - Store 2
         Organization store2 = retailer.getOrganizationDirectory()
@@ -183,17 +181,17 @@ public class ConfigureASystem {
                 "storeassociate3", "storeassociate3", storeAssociate3Emp, new StoreAssociateRole());
 
         // -----------------------------------------------------------------------
-        // MANUFACTURER (Sports Manufacturing Co.)
+        // MANUFACTURER (Manufacturer)
         // -----------------------------------------------------------------------
-         Organization manuAdminOrg = manufacturer.getOrganizationDirectory()
+        Organization manuAdminOrg = manufacturer.getOrganizationDirectory()
                 .createOrganization(Organization.Type.Admin);
         manuAdminOrg.setName("Manufacturer Admin Organization");
- 
+
         Employee manuAdminEmp = manuAdminOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         manuAdminOrg.getUserAccountDirectory().createUserAccount(
                 "manufactureradmin", "manufactureradmin", manuAdminEmp, new ManufacturerEnterpriseAdminRole());
-        
+
         // 9. Manufacturer Operations Organization
         //    -> Manufacturing Operations
         Organization manuOperationsOrg = manufacturer.getOrganizationDirectory()
@@ -203,13 +201,12 @@ public class ConfigureASystem {
         Employee manuOperationsEmp = manuOperationsOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         manuOperationsOrg.getUserAccountDirectory().createUserAccount(
-                "manufacturerOperationsManager", "manufacturerOperationsManager", manuOperationsEmp, new ManufacturerOperationsManagerRole());
+                "opsmanager", "opsmanager", manuOperationsEmp, new ManufacturerOperationsManagerRole());
 
-     
         Employee productionAnalystEmp = manuOperationsOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         manuOperationsOrg.getUserAccountDirectory().createUserAccount(
-                "productionanalyst", "productionanalyst", productionAnalystEmp, new ProductionAnalystRole());
+                "prodanalyst", "prodanalyst", productionAnalystEmp, new ProductionAnalystRole());
 
     }
 

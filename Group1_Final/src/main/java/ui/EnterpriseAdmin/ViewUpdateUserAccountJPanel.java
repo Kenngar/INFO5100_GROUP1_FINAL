@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hannahchiou
+ * @author Kenneth Garcia
  */
 public class ViewUpdateUserAccountJPanel extends javax.swing.JPanel {
 

@@ -6,7 +6,7 @@ package Business.OrderModel;
 
 /**
  *
- * @author kens2
+ * @author Kenneth Garcia
  */
 public class OrderItem {
     Product product;

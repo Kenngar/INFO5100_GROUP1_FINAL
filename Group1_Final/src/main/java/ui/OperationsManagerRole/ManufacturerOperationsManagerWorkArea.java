@@ -13,7 +13,6 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,15 +27,15 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
     private EcoSystem business;
     private Enterprise enterprise;
 
-    private JTable requestTable;
-
+    /**
+     * Creates new form ManufactureOperationsManagerWA
+     */
     public ManufacturerOperationsManagerWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.organization = organization;
         this.business = business;
         this.enterprise = enterprise;
-
         initComponents();
         lblEnterprise.setText("Enterprise: " + enterprise.getName());
         populateTable();
@@ -53,12 +52,13 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblWorkRequests = new javax.swing.JTable();
-        btnProcess = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        btnAssign = new javax.swing.JButton();
         lblEnterprise = new javax.swing.JLabel();
-        lblTitle1 = new javax.swing.JLabel();
-        btnAssignToMe1 = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(707, 425));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,17 +91,6 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 650, 220));
 
-        btnProcess.setBackground(new java.awt.Color(0, 102, 204));
-        btnProcess.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnProcess.setForeground(new java.awt.Color(255, 255, 255));
-        btnProcess.setText("Process (set priority/ ETA)");
-        btnProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcessActionPerformed(evt);
-            }
-        });
-        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
-
         btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -109,30 +98,57 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
                 btnRefreshActionPerformed(evt);
             }
         });
-        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 80, 30));
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+        lblTitle.setText("Operations Manager Menu");
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        btnAssign.setBackground(new java.awt.Color(0, 102, 204));
+        btnAssign.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnAssign.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssign.setText("Assign To Me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, 30));
 
         lblEnterprise.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblEnterprise.setText("Enterprise:");
-        add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 380, 20));
+        add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 20));
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTitle1.setText("Operations Manager Menu");
-        add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
-        btnAssignToMe1.setBackground(new java.awt.Color(0, 102, 204));
-        btnAssignToMe1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnAssignToMe1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAssignToMe1.setText("Assign to me");
-        btnAssignToMe1.addActionListener(new java.awt.event.ActionListener() {
+        btnProcess.setBackground(new java.awt.Color(0, 102, 204));
+        btnProcess.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnProcess.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcess.setText("Process (Set Priority/ETA)");
+        btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignToMe1ActionPerformed(evt);
+                btnProcessActionPerformed(evt);
             }
         });
-        add(btnAssignToMe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        populateTable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        // TODO add your handling code here:
+
+        PriorityRequest request = getSelectedRequest();
+        if (request == null) {
+            return;
+        }
+        request.setReceiver(account);
+        request.setStatus("Pending");
+        populateTable();
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
+        // TODO add your handling code here:
         PriorityRequest request = getSelectedRequest();
         if (request == null) {
             return;
@@ -146,39 +162,21 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
         userProcessContainer.add("ProcessPriorityRequestJPanel", panel);
         ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
 
-
     }//GEN-LAST:event_btnProcessActionPerformed
-
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        populateTable();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
-    private void btnAssignToMe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignToMe1ActionPerformed
-        // TODO add your handling code here:
-
-        PriorityRequest request = getSelectedRequest();
-        if (request == null) {
-            return;
-        }
-        request.setReceiver(account);
-        request.setStatus("Pending");
-        populateTable();
-
-    }//GEN-LAST:event_btnAssignToMe1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssignToMe1;
+    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEnterprise;
-    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblWorkRequests;
     // End of variables declaration//GEN-END:variables
 
     public void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblWorkRequests.getModel();
         model.setRowCount(0);
 
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
@@ -196,7 +194,7 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
     }
 
     private PriorityRequest getSelectedRequest() {
-        int row = requestTable.getSelectedRow();
+        int row = tblWorkRequests.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Select a request first.");
             return null;

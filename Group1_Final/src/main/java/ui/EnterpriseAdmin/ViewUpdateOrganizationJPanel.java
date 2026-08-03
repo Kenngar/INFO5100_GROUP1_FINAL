@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hannahchiou
+ * @author Kenneth Garcia
  */
 public class ViewUpdateOrganizationJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
