@@ -9,8 +9,10 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.RetailerAnalyticsOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.RestockRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,17 +45,14 @@ public class RetailerAnalyticsToManagerRequest extends javax.swing.JPanel {
 
     private void populateTable() {
 
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
-        model.setRowCount(0);
+         DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
+    model.setRowCount(0);
 
-        for (WorkRequest wr : organization.getWorkQueue().getWorkRequestList()) {
-
-            Object[] row = new Object[2];
-
-            row[0] = wr;
-            row[1] = wr.getStatus();
-
-            model.addRow(row);
+    for (WorkRequest wr : organization.getWorkQueue().getWorkRequestList()) {
+        Object[] row = new Object[2];
+        row[0] = wr;        // WorkRequest object, toString() displays the message
+        row[1] = wr.getStatus();
+        model.addRow(row);
         }
     }
 
@@ -160,7 +159,53 @@ public class RetailerAnalyticsToManagerRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     private void assignJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButton1ActionPerformed
+        int selectedRow = workRequestJTable1.getSelectedRow();
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(this,
+                "Please select a request from the table first.",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
+    DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
+    WorkRequest request = (WorkRequest) model.getValueAt(selectedRow, 0);
+
+    if (request.getStatus().equals("Confirmed") || request.getStatus().equals("Denied")) {
+        JOptionPane.showMessageDialog(this,
+                "This request has already been processed.",
+                "Already Processed",
+                JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+
+    String[] options = {"Confirm", "Deny", "Cancel"};
+    int choice = JOptionPane.showOptionDialog(this,
+            "Confirm or deny this request?",
+            "Confirm/Deny Request",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]);
+
+    if (choice == 0) {
+        request.setStatus("Confirmed");
+        JOptionPane.showMessageDialog(this,
+                "Request confirmed.",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+    } else if (choice == 1) {
+        request.setStatus("Denied");
+        JOptionPane.showMessageDialog(this,
+                "Request denied.",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        return;
+    }
+
+    populateTable();
 
     }//GEN-LAST:event_assignJButton1ActionPerformed
 

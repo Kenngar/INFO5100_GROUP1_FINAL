@@ -133,8 +133,8 @@ private JPanel userProcessContainer;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-ui.RetailerManager.RestockRequestJPanel panel = new ui.RetailerManager.RestockRequestJPanel(
-                userProcessContainer, userAccount, organization, enterprise, business);
+        ui.RetailerManager.RestockRequestJPanel panel = new ui.RetailerManager.RestockRequestJPanel(
+                userProcessContainer, userAccount, organization, business);
         userProcessContainer.add("RestockRequestJPanel", panel);
         ((java.awt.CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed

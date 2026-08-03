@@ -51,9 +51,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCart = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        txtSearch = new javax.swing.JTextField();
         txtNewQuantity = new javax.swing.JTextField();
-        btnSearchProduct = new javax.swing.JButton();
         btnModifyQuantity = new javax.swing.JButton();
         lblProductCatalogue = new javax.swing.JLabel();
         btnRemoveOrderItem = new javax.swing.JButton();
@@ -98,13 +96,6 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
         txtNewQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNewQuantityActionPerformed(evt);
-            }
-        });
-
-        btnSearchProduct.setText("Search Product");
-        btnSearchProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchProductActionPerformed(evt);
             }
         });
 
@@ -174,11 +165,6 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblProductCatalogue)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(82, 82, 82)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnSearchProduct))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(137, 137, 137)
                             .addComponent(lblQuantity)
@@ -207,11 +193,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(btnBack)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(69, 69, 69)
                 .addComponent(lblProductCatalogue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,12 +227,6 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
     private void txtNewQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewQuantityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNewQuantityActionPerformed
-
-    private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-        String productName = txtSearch.getText();
-        populateProductTable(productName);
-
-    }//GEN-LAST:event_btnSearchProductActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
         // TODO add your handling code here:
@@ -306,7 +282,6 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
         populateCartTable();
 
         txtNewQuantity.setText("");
-        txtSearch.setText("");
 
         spnQuantity.setValue(0);
         JOptionPane.showMessageDialog(this, "Thank you for your purchase");
@@ -397,7 +372,6 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCheckOut;
     private javax.swing.JButton btnModifyQuantity;
     private javax.swing.JButton btnRemoveOrderItem;
-    private javax.swing.JButton btnSearchProduct;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblItemsInCart;
@@ -407,6 +381,5 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblCart;
     private javax.swing.JTable tblProductCatalog;
     private javax.swing.JTextField txtNewQuantity;
-    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
