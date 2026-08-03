@@ -181,7 +181,7 @@ public class ConfigureASystem {
                 "storeassociate3", "storeassociate3", storeAssociate3Emp, new StoreAssociateRole());
 
         // -----------------------------------------------------------------------
-        // MANUFACTURER (Sports Manufacturing Co.)
+        // MANUFACTURER (Manufacturer)
         // -----------------------------------------------------------------------
         Organization manuAdminOrg = manufacturer.getOrganizationDirectory()
                 .createOrganization(Organization.Type.Admin);
@@ -201,12 +201,12 @@ public class ConfigureASystem {
         Employee manuOperationsEmp = manuOperationsOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         manuOperationsOrg.getUserAccountDirectory().createUserAccount(
-                "opsmanager", "123456", manuOperationsEmp, new ManufacturerOperationsManagerRole());
+                "opsmanager", "opsmanager", manuOperationsEmp, new ManufacturerOperationsManagerRole());
 
         Employee productionAnalystEmp = manuOperationsOrg.getEmployeeDirectory()
                 .createEmployee(faker.name().fullName());
         manuOperationsOrg.getUserAccountDirectory().createUserAccount(
-                "prodanalyst", "analyst", productionAnalystEmp, new ProductionAnalystRole());
+                "prodanalyst", "prodanalyst", productionAnalystEmp, new ProductionAnalystRole());
 
     }
 

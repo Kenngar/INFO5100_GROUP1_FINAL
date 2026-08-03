@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  * own queue, the wholesaler sales org's queue, and the manager's personal
  * queue) so status changes made on either side are visible everywhere.
  *
- * @author Kenneth Garcia
+ * @author Christopher Carmant
  */
 public class RestockRequestJPanel extends javax.swing.JPanel {
 
