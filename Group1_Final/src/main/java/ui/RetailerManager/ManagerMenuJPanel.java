@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  * the wholesaler (cross-enterprise), and review/approve items requested
  * by associates at their store.
  *
- * @author Kenneth Garcia
+ * @author Christopher Carmant
  */
 public class ManagerMenuJPanel extends javax.swing.JPanel {
 

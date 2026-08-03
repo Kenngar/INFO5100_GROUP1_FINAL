@@ -24,7 +24,7 @@ import ui.ProductionAnalystRole.ProductionAnalystMenuJPanel;
 
 /**
  *
- * @author raunak
+ * @author Anh Nguyen
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 

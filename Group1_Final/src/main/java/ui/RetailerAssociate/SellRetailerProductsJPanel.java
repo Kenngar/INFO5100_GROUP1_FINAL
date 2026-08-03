@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * (this is what feeds the Retail Analyst's sales report) and decrements
  * on-shelf availability.
  *
- * @author Kenneth Garcia
+ * @author Christopher Carmant
  */
 public class SellRetailerProductsJPanel extends javax.swing.JPanel {
 

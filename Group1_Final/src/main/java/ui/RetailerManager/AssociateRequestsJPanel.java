@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * their store (Business.WorkQueue.ItemsRequest) and can approve or
  * reject them.
  *
- * @author Kenneth Garcia
+ * @author Christopher Carmant
  */
 public class AssociateRequestsJPanel extends javax.swing.JPanel {
 

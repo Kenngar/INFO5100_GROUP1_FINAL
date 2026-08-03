@@ -295,7 +295,11 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
         // TODO add your handling code here:
-        masterOrderList.addNewOrder(currentOrder);
+        int selectedRowIndex = tblCart.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select prodcut");
+            return;
+        }masterOrderList.addNewOrder(currentOrder);
         currentOrder = new WholesalerOrder();
 
         populateProductTable();

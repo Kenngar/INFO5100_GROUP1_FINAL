@@ -23,7 +23,7 @@ public class MarketingMenuJPanel extends javax.swing.JPanel {
     private Organization organization;
 
     /**
-     * Creates new form MarketingSpecialistMenuJPanel
+     * Creates new form MarketingMenuJPanel
      */
       public MarketingMenuJPanel() {
         this(null, null, null, null);

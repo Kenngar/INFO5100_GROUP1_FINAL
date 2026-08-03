@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author Kenneth Garcia
  */
 public class WholesalerPricingInventoryJPanel extends javax.swing.JPanel {
   
