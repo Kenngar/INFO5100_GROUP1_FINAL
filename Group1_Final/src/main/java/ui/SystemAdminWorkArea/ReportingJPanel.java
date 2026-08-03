@@ -59,7 +59,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
         lblReport.setText("Report:");
         add(lblReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 60, 30));
 
-        cmbReport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System Summary", "Work Requests by Status", "Work Requests by Enterprise", "Top Requesters" }));
+        cmbReport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System Summary", "Work Requests by Status", "Top Requesters" }));
         cmbReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbReportActionPerformed(evt);
@@ -149,8 +149,6 @@ public class ReportingJPanel extends javax.swing.JPanel {
             loadSystemSummaryReport();
         } else if (reportName.equals("Work Requests by Status")) {
             loadWorkRequestsByStatusReport();
-        } else if (reportName.equals("By Enterprise")) {
-            loadByEnterpriseReport();
         } else if (reportName.equals("Top Requesters")) {
             loadTopRequestersReport();
         }
@@ -225,37 +223,37 @@ public class ReportingJPanel extends javax.swing.JPanel {
         });
     }
 
-    private void loadByEnterpriseReport() {
-        String[] columns = {"Enterprise", "Type", "Organizations", "Employees", "Accounts", "Work Requests"};
-        java.util.ArrayList<Object[]> rows = new java.util.ArrayList<>();
-
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                int orgCount = enterprise.getOrganizationDirectory().getOrganizationList().size();
-                int employeeCount = 0;
-                int accountCount = 0;
-                int requestCount = 0;
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    employeeCount += organization.getEmployeeDirectory().getEmployeeList().size();
-                    accountCount += organization.getUserAccountDirectory().getUserAccountList().size();
-                    requestCount += organization.getWorkQueue().getWorkRequestList().size();
-                }
-                rows.add(new Object[]{
-                    enterprise.getName(),
-                    enterprise.getEnterpriseType().getValue(),
-                    orgCount, employeeCount, accountCount, requestCount
-                });
-            }
-        }
-
-        Object[][] data = rows.toArray(new Object[0][]);
-        tblReport.setModel(new DefaultTableModel(data, columns) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
-    }
+//    private void loadByEnterpriseReport() {
+//        String[] columns = {"Enterprise", "Type", "Organizations", "Employees", "Accounts", "Work Requests"};
+//        java.util.ArrayList<Object[]> rows = new java.util.ArrayList<>();
+//
+//        for (Network network : system.getNetworkList()) {
+//            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                int orgCount = enterprise.getOrganizationDirectory().getOrganizationList().size();
+//                int employeeCount = 0;
+//                int accountCount = 0;
+//                int requestCount = 0;
+//                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                    employeeCount += organization.getEmployeeDirectory().getEmployeeList().size();
+//                    accountCount += organization.getUserAccountDirectory().getUserAccountList().size();
+//                    requestCount += organization.getWorkQueue().getWorkRequestList().size();
+//                }
+//                rows.add(new Object[]{
+//                    enterprise.getName(),
+//                    enterprise.getEnterpriseType().getValue(),
+//                    orgCount, employeeCount, accountCount, requestCount
+//                });
+//            }
+//        }
+//
+//        Object[][] data = rows.toArray(new Object[0][]);
+//        tblReport.setModel(new DefaultTableModel(data, columns) {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                return false;
+//            }
+//        });
+//    }
 
     // Counts how many work requests each user sent, sorted highest first
     private void loadTopRequestersReport() {
