@@ -256,7 +256,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRowIndex = tblCart.getSelectedRow();
         if(selectedRowIndex < 0){
-            JOptionPane.showMessageDialog(this, "Please select prodcut");
+            JOptionPane.showMessageDialog(this, "Please select product");
             return;
         }
         OrderItem item = (OrderItem)tblCart.getValueAt(selectedRowIndex,0);
@@ -281,7 +281,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
     private void btnRemoveOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveOrderItemActionPerformed
         int selectedRowIndex = tblCart.getSelectedRow();
         if(selectedRowIndex < 0){
-            JOptionPane.showMessageDialog(this, "Please select prodcut");
+            JOptionPane.showMessageDialog(this, "Please select product");
             return;
         }
         OrderItem item = (OrderItem)tblCart.getValueAt(selectedRowIndex,0);
@@ -297,7 +297,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRowIndex = tblCart.getSelectedRow();
         if(selectedRowIndex < 0){
-            JOptionPane.showMessageDialog(this, "Please select prodcut");
+            JOptionPane.showMessageDialog(this, "Please select product");
             return;
         }masterOrderList.addNewOrder(currentOrder);
         currentOrder = new WholesalerOrder();
@@ -317,7 +317,7 @@ public class SellWholesalerProductsJPanel extends javax.swing.JPanel {
 
         int selectedRowIndex = tblProductCatalog.getSelectedRow();
         if(selectedRowIndex < 0){
-            JOptionPane.showMessageDialog(this, "Please select prodcut");
+            JOptionPane.showMessageDialog(this, "Please select product");
             return;
         }
         Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);

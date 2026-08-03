@@ -38,6 +38,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             cmbOrganizationList.addItem(org);
         }
     }
+    public void refreshTable() {
+    Organization organization = (Organization) cmbOrganizationList.getSelectedItem();
+    if (organization != null) {
+        populateTable(organization);
+        }
+    }
 
     private void populateTable(Organization organization) {
         DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();

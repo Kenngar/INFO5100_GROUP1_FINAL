@@ -167,40 +167,41 @@ public class MarketingRequestsJPanel extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-fileChooser.setFileFilter(new FileNameExtensionFilter(
-    "Assignment Files (*.pdf, *.doc, *.docx, *.txt)", 
-    "pdf", "doc", "docx", "txt"));
-
-int returnVal = fileChooser.showOpenDialog(this);
-
-if (returnVal == JFileChooser.APPROVE_OPTION) {
-    File selectedFile = fileChooser.getSelectedFile();
-    
-    // Now get the selected row from the table
-    int selectedRow = workRequestJTable.getSelectedRow();
+            int selectedRow = workRequestJTable.getSelectedRow();
     if (selectedRow < 0) {
-        JOptionPane.showMessageDialog(this, "Please select a request.");
+        JOptionPane.showMessageDialog(this, 
+            "Please select a request from the table first.", 
+            "No Selection", 
+            JOptionPane.WARNING_MESSAGE);
         return;
     }
 
     DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
     MarketingRequest request = (MarketingRequest) model.getValueAt(selectedRow, 0);
 
-    // Set status to "Complete"
-    request.setStatus("Complete");
-    
-    // Optional: Store the file path in the message
-    request.setMessage("File uploaded: " + selectedFile.getName());
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setFileFilter(new FileNameExtensionFilter(
+            "Assignment Files (*.pdf, *.doc, *.docx, *.txt)",
+            "pdf", "doc", "docx", "txt"));
 
-    JOptionPane.showMessageDialog(this,
-            "File uploaded: " + selectedFile.getName() + "\nStatus set to Complete."
-    );
+    int returnVal = fileChooser.showOpenDialog(this);
 
-    
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        request.setStatus("Complete");
+        request.setMessage("File uploaded: " + selectedFile.getName());
+
+        JOptionPane.showMessageDialog(this,
+                "File uploaded: " + selectedFile.getName() + "\nStatus set to Complete.",
+                "Upload Successful",
+                JOptionPane.INFORMATION_MESSAGE);
     } else {
-    JOptionPane.showMessageDialog(this, "File upload cancelled.");
+        JOptionPane.showMessageDialog(this, 
+            "File upload cancelled.", 
+            "Cancelled", 
+            JOptionPane.INFORMATION_MESSAGE);
     }
+
     populateTable();
     }//GEN-LAST:event_btnSubmitActionPerformed
 

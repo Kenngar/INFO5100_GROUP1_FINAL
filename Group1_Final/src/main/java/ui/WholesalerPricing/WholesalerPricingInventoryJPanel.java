@@ -181,37 +181,65 @@ public class WholesalerPricingInventoryJPanel extends javax.swing.JPanel {
 
     private void assignJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButton2ActionPerformed
         int selectedRow = tblProductCatalog.getSelectedRow();
-        if (selectedRow < 0) {
-        JOptionPane.showMessageDialog(this, "Please select a product.");
-        return;
-        }
-    
-
-        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
-        Product product = (Product) model.getValueAt(selectedRow, 0);
-
-
-        String priceInput = JOptionPane.showInputDialog(this, 
-        "Enter new price for product: " + product.getProdName(), 
-        JOptionPane.QUESTION_MESSAGE);
-
-        if (priceInput == null) {
-        return; // User cancelled
-        }
-
-        try {
-        double newPrice = Double.parseDouble(priceInput);
-        product.setPrice(newPrice);
-    
+    if (selectedRow < 0) {
         JOptionPane.showMessageDialog(this, 
-        "Price for " + product.getProdName() + " updated to: $" + String.format("%.2f", newPrice));
-    
+            "Please select a product first.", 
+            "No Selection", 
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+    Product product = (Product) model.getValueAt(selectedRow, 0);
+
+    // Show current price as a default value in the input dialog
+    String currentPrice = String.format("%.2f", product.getPrice());
+    String priceInput = JOptionPane.showInputDialog(this,
+            "Enter new price for product: " + product.getProdName() + "\nCurrent price: $" + currentPrice,
+            currentPrice);
+
+    if (priceInput == null) {
+        return; // User cancelled
+    }
+
+    // Trim whitespace
+    priceInput = priceInput.trim();
+
+    // Check if empty
+    if (priceInput.isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Price cannot be empty. Please enter a valid number (e.g., 19.99).",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        double newPrice = Double.parseDouble(priceInput);
+
+        // Optional: Validate that price is not negative
+        if (newPrice < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Price cannot be negative. Please enter a positive number.",
+                    "Invalid Price",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        product.setPrice(newPrice);
+
+        JOptionPane.showMessageDialog(this,
+                "Price for " + product.getProdName() + " updated to: $" + String.format("%.2f", newPrice),
+                "Update Successful",
+                JOptionPane.INFORMATION_MESSAGE);
+
         populateProductTable(); // Refresh the table to show updated price
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, 
-            "Invalid price entered. Please enter a valid number (e.g., 19.99).", 
-            "Input Error", 
-            JOptionPane.ERROR_MESSAGE);
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this,
+                "Invalid price entered. Please enter a valid number (e.g., 19.99).",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_assignJButton2ActionPerformed
 
