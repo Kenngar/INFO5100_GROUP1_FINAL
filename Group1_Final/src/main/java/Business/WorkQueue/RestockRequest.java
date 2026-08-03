@@ -43,6 +43,6 @@ public class RestockRequest extends WorkRequest {
 
     @Override
     public String toString() {
-        return "[" + storeName + "] " + quantity + " x " + productName;
+    return getMessage() != null ? getMessage() : "";
     }
 }
