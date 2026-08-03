@@ -6,13 +6,17 @@ package ui.WholesalerPricing;
 
 import ui.WholesalerPricing.*;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.WholesalerPricingOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ItemsRequest;
 import Business.WorkQueue.ManufacturerQuotesRequest;
+import Business.WorkQueue.QuoteRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,33 +31,51 @@ public class WholesalerPricingToManufacturer extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Organization organization;
-    
+
+    private final ArrayList<QuoteRequest> rowRequests = new ArrayList<>();
+
     public WholesalerPricingToManufacturer(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
-        
+
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.organization = organization;  
+        this.organization = organization;
         populateTable();
-     
+
     }
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
         model.setRowCount(0);
+        rowRequests.clear();
 
-        for (WorkRequest wr : organization.getWorkQueue().getWorkRequestList()) {
-            if (wr instanceof ItemsRequest) {
-                ItemsRequest ir = (ItemsRequest) wr;
+        for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (wr instanceof QuoteRequest) {
+                QuoteRequest qr = (QuoteRequest) wr;
                 Object[] row = new Object[2];
-                row[0] = ir; // toString() = needItems
-                row[1] = ir.getStatus();
+                row[0] = qr.getMessage();
+                row[1] = qr.getStatus();
                 model.addRow(row);
+                rowRequests.add(qr);
             }
         }
     }
 
-    
+    private Organization findManufacturerOperationsOrg() {
+        for (Network network : business.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.MANUFACTURER) {
+                    for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        if (org.getType() == Organization.Type.ManufacturerOperations) {
+                            return org;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,23 +86,23 @@ public class WholesalerPricingToManufacturer extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        refreshJButton = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         workRequestJTable1 = new javax.swing.JTable();
         btnManuMakeRequest = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        assignJButton2 = new javax.swing.JButton();
+        btnApprove = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setText("Messages to Manufacturer");
@@ -152,27 +174,27 @@ public class WholesalerPricingToManufacturer extends javax.swing.JPanel {
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        assignJButton2.setText("Approve Quote");
-        assignJButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnApprove.setText("Approve Quote");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButton2ActionPerformed(evt);
+                btnApproveActionPerformed(evt);
             }
         });
-        add(assignJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-    populateTable();
-    }//GEN-LAST:event_refreshJButtonActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        populateTable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnManuMakeRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManuMakeRequestActionPerformed
         // TODO add your handling code here:
-    // Make Request to Manufacturer for more items
+        // Make Request to Manufacturer for more items
 
         String msg = JOptionPane.showInputDialog(
                 this,
-                "Enter request details for more items (e.g., item + quantity):",
-                "Items Request",
+                "Enter your quote request (e.g., I want 500):",
+                "Manufacturing Quote Request",
                 JOptionPane.PLAIN_MESSAGE
         );
         if (msg == null) {
@@ -184,18 +206,24 @@ public class WholesalerPricingToManufacturer extends javax.swing.JPanel {
             return;
         }
 
-        ItemsRequest request = new ItemsRequest();
-        request.setMessage(msg);        // base WorkRequest message
-        request.setTestResult(msg);     // your own field needItems
-        request.setSender(userAccount);
-        request.setStatus("Sent");
+        Organization manufacturerOrg = findManufacturerOperationsOrg();
+        if (manufacturerOrg == null) {
+            JOptionPane.showMessageDialog(this, "Could not find the Manufacturer's Operations organization.");
+            return;
+        }
 
-        // Add to Manufacturer org queue and sender's queue
-        organization.getWorkQueue().getWorkRequestList().add(request);
+        QuoteRequest request = new QuoteRequest();
+        request.setMessage(msg);
+        request.setItemName(msg);   // so it still shows something on Production Analyst's Respond screen
+        request.setSender(userAccount);
+        request.setStatus("Unclaimed");
+
+        manufacturerOrg.getWorkQueue().getWorkRequestList().add(request);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
 
-        JOptionPane.showMessageDialog(this, "Request for items sent to Manufacturer.");
-        populateTable();    
+        JOptionPane.showMessageDialog(this, "Request sent to Manufacturer.");
+        populateTable();
+
     }//GEN-LAST:event_btnManuMakeRequestActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -206,30 +234,43 @@ public class WholesalerPricingToManufacturer extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void assignJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButton2ActionPerformed
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         int selectedRow = workRequestJTable1.getSelectedRow();
-        if (selectedRow < 0) {
+        if (selectedRow < 0 || selectedRow >= rowRequests.size()) {
             JOptionPane.showMessageDialog(this, "Please select a request.");
             return;
         }
+        QuoteRequest request = rowRequests.get(selectedRow);
 
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable1.getModel();
-        ItemsRequest request = (ItemsRequest) model.getValueAt(selectedRow, 0);
+        if (!request.getStatus().startsWith("Waiting for Approval")) {
+            JOptionPane.showMessageDialog(this, "This request hasn't been quoted back by Production Analyst yet.");
+            return;
+        }
 
-        request.setStatus("Approved");
+        int choice = JOptionPane.showConfirmDialog(this,
+                "Approve this quote of $" + request.getQuotedPrice() + " for " + request.getItemName() + "?",
+                "Approve Quote", JOptionPane.YES_NO_OPTION);
 
+        if (choice == JOptionPane.YES_OPTION) {
+            request.setApproved(true);
+            request.setStatus("Completed");
+            JOptionPane.showMessageDialog(this, "Quote approved.");
+        } else {
+            request.setApproved(false);
+            request.setStatus("Rejected");
+            JOptionPane.showMessageDialog(this, "Quote rejected.");
+        }
         populateTable();
-    }//GEN-LAST:event_assignJButton2ActionPerformed
+    }//GEN-LAST:event_btnApproveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignJButton2;
+    private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnManuMakeRequest;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton refreshJButton;
     private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

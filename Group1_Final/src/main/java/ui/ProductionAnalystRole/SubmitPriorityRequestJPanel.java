@@ -93,11 +93,11 @@ public class SubmitPriorityRequestJPanel extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("e.g. Need 500 units by Q3");
+        jLabel1.setText("e.g. Need 1500 shirts by Q3");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 180, -1));
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("e.g. Steel Frame");
+        jLabel2.setText("e.g. Running Shoes");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
