@@ -20,5 +20,9 @@ public class WholesalerSalesRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new WholesalerSalesMenuJPanel(userProcessContainer, account, organization, business);
     }
+    @Override
+    public String toString() {
+        return Role.RoleType.WholesalerSales.getValue();
+    }
 }
  

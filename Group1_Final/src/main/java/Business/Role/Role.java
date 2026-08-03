@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 public abstract class Role {
     
     public enum RoleType{
-        
+        SystemAdmin("System Admin"),
          // ── Enterprise admins ────────────────────────────────────
         WholesalerEnterpriseAdmin("Wholesaler Enterprise Admin"),
         RetailerEnterpriseAdmin("Retailer Enterprise Admin"),
         ManufacturerEnterpriseAdmin("Manufacturer Enterprise Admin"),
         
-        WholesalerPricingAnalyst("Wholesaler Pricing Analyst"),
+        WholesalerPricing("Wholesaler Pricing"),
         WholesalerSales("Wholesaler Sales"),
         WholesalerMarketing("Wholesaler Marketing"),
         

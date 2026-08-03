@@ -6,6 +6,7 @@ package ui.EnterpriseAdmin;
 
 import Business.Employee.Employee;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -42,7 +43,7 @@ public class ViewUpdateEmployeeJPanel extends javax.swing.JPanel {
 
     private void configureMode() {
         // ID is always read-only
-        txtID.setEditable(false);
+        txtID.setEnabled(false);
 
         if (editable) {
             // Update mode
@@ -87,6 +88,12 @@ public class ViewUpdateEmployeeJPanel extends javax.swing.JPanel {
         jLabel1.setText("Employee ID:");
 
         jLabel2.setText("Employee Name:");
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
 
         btnUpdate1.setText("Update");
         btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +150,12 @@ public class ViewUpdateEmployeeJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        for (Component comp : userProcessContainer.getComponents()) {
+        if (comp instanceof ManageEmployeeJPanel) {
+            ((ManageEmployeeJPanel) comp).refreshTable();
+            break;
+            }
+        }
           userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
@@ -163,15 +176,24 @@ public class ViewUpdateEmployeeJPanel extends javax.swing.JPanel {
         }
  
         employee.setName(newName);
- 
+        
         JOptionPane.showMessageDialog(this,
                 "Employee updated successfully.", "Updated", JOptionPane.INFORMATION_MESSAGE);
- 
+        for (Component comp : userProcessContainer.getComponents()) {
+        if (comp instanceof ManageEmployeeJPanel) {
+            ((ManageEmployeeJPanel) comp).refreshTable();
+            break;
+            }
+        }
         // Navigate back to the employee list
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

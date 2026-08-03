@@ -22,5 +22,8 @@ public class RetailerAnalyticsRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new RetailerAnalyticsMenuJPanel(userProcessContainer, account, organization, business, enterprise);
     }
-    
+    @Override
+    public String toString() {
+        return Role.RoleType.RetailerAnalytics.getValue();
+    }
 }

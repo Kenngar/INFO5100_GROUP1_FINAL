@@ -25,5 +25,8 @@ public class ManufacturerOperationsManagerRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new ManufacturerOperationsManagerWorkArea(userProcessContainer, account, organization, business, enterprise);
     }
-    
+    @Override
+    public String toString() {
+        return Role.RoleType.ManufacturingOperationsManager.getValue();
+    }
 }

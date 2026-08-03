@@ -24,5 +24,8 @@ public class ProductionAnalystRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new ProductionAnalystMenuJPanel(userProcessContainer, account, organization, business, enterprise);
     }
-    
+    @Override
+    public String toString() {
+        return Role.RoleType.ProductionAnalyst.getValue();
+    }
 }
