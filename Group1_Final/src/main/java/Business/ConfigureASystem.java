@@ -40,7 +40,7 @@ public class ConfigureASystem {
         configureUsers(system);
         // -- Network ----------------------------------------------------------
         Network network = system.createAndAddNetwork();
-        network.setName("MSIS Network");
+        network.setName("ActiveWear Supply Network");
         configureUsers(system);
         // -- Enterprises ------------------------------------------------------
         Enterprise wholesalerEnterprise = network.getEnterpriseDirectory()
