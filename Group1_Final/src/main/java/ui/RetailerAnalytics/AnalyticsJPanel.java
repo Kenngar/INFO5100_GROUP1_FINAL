@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.OrderModel.Product;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,12 +35,11 @@ public class AnalyticsJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.business = business;
         this.enterprise = enterprise;
-        
+
         lblEnterprise.setText("Enterprise: " + enterprise.getName());
 
         populateTable();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +56,7 @@ public class AnalyticsJPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         lblEnterprise = new javax.swing.JLabel();
         lblTotalValue = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -108,15 +109,31 @@ public class AnalyticsJPanel extends javax.swing.JPanel {
 
         lblTotalValue.setFont(new java.awt.Font("Helvetica Neue", 1, 17)); // NOI18N
         lblTotalValue.setText("Total Inventory Value:");
-        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, -1));
+        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 440, -1));
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         populateTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        userProcessContainer.remove(this);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEnterprise;
@@ -152,6 +169,6 @@ public class AnalyticsJPanel extends javax.swing.JPanel {
         }
 
         lblTotalValue.setText("Total Inventory Value: $" + String.format("%.2f", totalValue));
-    
+
     }
 }
