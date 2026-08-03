@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.QuoteRequest;
 
 /**
  *
@@ -58,7 +59,8 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
         lblEnterprise = new javax.swing.JLabel();
         btnProcess = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(707, 425));
+        setPreferredSize(new java.awt.Dimension(1200, 645));
+        setSize(new java.awt.Dimension(1200, 645));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
@@ -89,7 +91,7 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblWorkRequests);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 650, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 930, 230));
 
         btnRefresh.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnRefresh.setText("Refresh");
@@ -178,19 +180,28 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblWorkRequests.getModel();
         model.setRowCount(0);
-
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if (!(request instanceof PriorityRequest)) {
-                continue;
+            if (request instanceof PriorityRequest) {
+                PriorityRequest pr = (PriorityRequest) request;
+                model.addRow(new Object[]{
+                    pr.getItemName(),
+                    pr.getMessage(),
+                    pr.getSender() == null ? "" : pr.getSender().getUsername(),
+                    pr.getStatus()
+                });
+            } else if (request instanceof QuoteRequest && "Completed".equals(request.getStatus())) {
+                // Only APPROVED quotes show here - a notification that a
+                // cross-enterprise quote went through, not an actionable task.
+                QuoteRequest qr = (QuoteRequest) request;
+                model.addRow(new Object[]{
+                    qr.getItemName(),
+                    "Quote approved by Wholesaler - " + qr.getMessage(),
+                    qr.getSender() == null ? "" : qr.getSender().getUsername(),
+                    qr.getStatus()
+                });
             }
-            PriorityRequest pr = (PriorityRequest) request;
-            model.addRow(new Object[]{
-                pr.getItemName(),
-                pr.getMessage(),
-                pr.getSender() == null ? "" : pr.getSender().getUsername(),
-                pr.getStatus()
-            });
         }
+
     }
 
     private PriorityRequest getSelectedRequest() {
@@ -201,15 +212,16 @@ public class ManufacturerOperationsManagerWorkArea extends javax.swing.JPanel {
         }
         int i = 0;
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if (!(request instanceof PriorityRequest)) {
+            boolean shown = (request instanceof PriorityRequest)
+                    || (request instanceof QuoteRequest && "Completed".equals(request.getStatus()));
+            if (!shown) {
                 continue;
             }
             if (i == row) {
-                return (PriorityRequest) request;
+                return (request instanceof PriorityRequest) ? (PriorityRequest) request : null;
             }
             i++;
         }
         return null;
     }
-
 }

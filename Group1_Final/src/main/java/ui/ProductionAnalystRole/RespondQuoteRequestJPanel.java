@@ -26,8 +26,8 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.request = request;
         initComponents();
-        lblItemValue.setText(request.getItemName());
-        lblQuantityValue.setText(String.valueOf(request.getQuantity()));
+        lblItemValue.setText(request.getMessage());
+
     }
 
     /**
@@ -42,7 +42,6 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         lblQPrice = new javax.swing.JLabel();
         lblItem = new javax.swing.JLabel();
-        lblQuantity = new javax.swing.JLabel();
         txtQPrice = new javax.swing.JTextField();
         lblItemValue = new javax.swing.JLabel();
         lblQuantityValue = new javax.swing.JLabel();
@@ -62,18 +61,14 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         add(lblQPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, 20));
 
         lblItem.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        lblItem.setText("Item:");
-        add(lblItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, 20));
-
-        lblQuantity.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        lblQuantity.setText("Quantity:");
-        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, 20));
+        lblItem.setText("Request Message:");
+        add(lblItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 120, 20));
 
         txtQPrice.setForeground(new java.awt.Color(102, 102, 102));
         add(txtQPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 150, 30));
 
         lblItemValue.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        add(lblItemValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, 30));
+        add(lblItemValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 240, 30));
 
         lblQuantityValue.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         add(lblQuantityValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 150, 30));
@@ -116,7 +111,6 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-
         double price;
         try {
             price = Double.parseDouble(txtQPrice.getText().trim());
@@ -126,10 +120,10 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
         }
 
         request.setQuotedPrice(price);
-        request.setApproved(true);
-        request.setStatus("Completed");
+        request.setMessage(request.getMessage() + " - Quoted at $" + String.format("%.2f", price));
+        request.setStatus("Waiting for Approval from PA");
 
-        JOptionPane.showMessageDialog(this, "Quote submitted.");
+        JOptionPane.showMessageDialog(this, "Quote submitted. Waiting on Wholesaler's approval.");
         btnBackActionPerformed(evt);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -161,7 +155,6 @@ public class RespondQuoteRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblItem;
     private javax.swing.JLabel lblItemValue;
     private javax.swing.JLabel lblQPrice;
-    private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblQuantityValue;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtQPrice;
